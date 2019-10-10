@@ -72,41 +72,7 @@ class Agendamento {
             }
         }
     }
-        function veri_adicionar($agenda){
-         $conecta;
-
-        try {
-            $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
-            $conecta->beginTransaction();
-            $sql = "SELECT cadastro_usuario,data,descrisao,hora,agenda FROM agendamento WHERE nome=:nome or  telefonetra=:telefonetra or razaosocial=:razaosocial or email=:email or senha=:senha";
-            $preparedStatment = $conecta->prepare($sql);
-            $preparedStatment->bindValue(":cadastro_usuario", $agenda->getCadastro_usuario());
-            $preparedStatment->bindValue(":data", $agenda->getData());
-            $preparedStatment->bindValue(":descricao", $agenda->getDescricao());
-            $preparedStatment->bindValue(":hora", $agenda->getHora());
-            $preparedStatment->bindValue(":agenda", $agenda->getAgenda());
-            $preparedStatment->execute();
-            if ($preparedStatment->rowCount() < 0) {
-                echo "as informação não pode ser vazias exeto o telefone pessoal e endereço os outro são obrigado digite de novo";
-                header("location:../pacientes/adicionar.php");
-                throw new InvalidArgumentException(":cadastro_usuario" . ":data".":hora".":agenda");
-            } else {
-                echo "sucesso";
-            }
-            $conecta->commit();
-            return SUCESSO;
-        } catch (PDOException $exc) {
-            if ((isset($conecta)) && ($conecta->inTransaction())) {
-                $conecta->rollBack();
-            }
-            echo $exc->getMessage();
-            return ERRADO;
-        } finally {
-            if (isset($conecta)) {
-                unset($conecta);
-            }
-        }
-    }
+        
     function lista($agendar) {
         $conecta;
         try {
@@ -115,11 +81,11 @@ class Agendamento {
             $sql ="SELECT agendamento.*,usuario.nome as cadastros FROM agendamento INNER JOIN usuario ON agendamento.idagendameto=usuario.idusuario ";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":idagendamento", $agendar->getIdagendamento());
-            $preparedStatment->bindValue(":cadastro_usuario", $agendar->getCadastro_usuario());
-            $preparedStatment->bindValue(":data", $agendar->getData());
-            $preparedStatment->bindValue(":descricao", $agendar->getDescricao());
-            $preparedStatment->bindValue(":hora", $agendar->getHora());
-            $preparedStatment->bindValue(":agenda", $agendar->getAgenda());
+            $prepara->bindValue(":cadastro_usuario", $agendar->getCadastro_usuario());
+            $prepara->bindValue(":data", $agendar->getData());
+           $prepara->bindValue(":descricao", $agendar->getDescricao());
+            $prepara->bindValue(":hora", $agendar->getHora());
+            $prepara->bindValue(":agenda", $agendar->getAgenda());
             $prepara->execute();
             $conecta->commit();
             $lista = null;
@@ -190,7 +156,7 @@ class Agendamento {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE agendamento SET  cadastro_usuario=:cadastro_usuario,data=:data,descricao=:descricao,agenda=:agenda WHERE idagendamento =:idagendamento";
+            $sql = "UPDATE agendamento SET  cadastro_usuario=:cadastro,data=:data,descricao=:descricao,agenda=:agenda WHERE idagendamento =:idagendamento";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":idagendamento", $agendar->getIdagendamento());
@@ -216,14 +182,14 @@ class Agendamento {
         
     }
         
-     public function excluir($agendar) {
+     public function excluir($produtos) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE*FROM agendamento WHERE idagendamento=:idagendamento";
+            $sql = "DELETE*FROM produto WHERE idproduto=:idproduto";
             $prepara=$conecta->prepare($sql);
-            $prepara->bindValue(":idagendamento",$agendar->getIdagendamento());
+            $prepara->bindValue(":idproduto",$produtos->getIdproduto());
             $prepara->execute();
             $conecta->commit();
             
@@ -240,6 +206,7 @@ class Agendamento {
         }
     }
 }
+
     
 
 
