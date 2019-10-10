@@ -190,7 +190,7 @@ class Agendamento {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE agendamento SET  cadastro_usuario=:cadastro,data=:data,descricao=:descricao,agenda=:agenda WHERE idagendamento =:idagendamento";
+            $sql = "UPDATE agendamento SET  cadastro_usuario=:cadastro_usuario,data=:data,descricao=:descricao,agenda=:agenda WHERE idagendamento =:idagendamento";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":idagendamento", $agendar->getIdagendamento());
