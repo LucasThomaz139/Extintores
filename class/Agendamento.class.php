@@ -78,7 +78,7 @@ class Agendamento {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT agendamento.*,usuario.nome as cadastros FROM agendamento INNER JOIN usuario ON agendamento.idagendameto=usuario.idusuario ";
+            $sql ="SELECT agendamento.*,cadastro.nome as cadastros FROM agendamento INNER JOIN usuario ON agendamento.idagendameto=usuario.idusuario ";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":idagendamento", $agendar->getIdagendamento());
             $prepara->bindValue(":cadastro_usuario", $agendar->getCadastro_usuario());
