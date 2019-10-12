@@ -227,7 +227,7 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE*FROM agendamento WHERE idagendamento=:idagendamento";
+            $sql = "DELETE*FROM produtos WHERE idagendamento=:idagendamento";
             $prepara=$conecta->prepare($sql);
             $prepara->bindValue(":idproduto",$produtos->getIdproduto());
             $prepara->execute();
