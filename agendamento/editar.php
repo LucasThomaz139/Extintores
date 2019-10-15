@@ -14,14 +14,14 @@ $eu=$usuario->lista($usuario);
                         <?php
                         foreach($eu as $linhas)
                         {
-                            echo "<option value='$linhas->getIdusuario()'>$linhas->getNome()</option>";
+                            echo "<option value='{$linhas->getIdusuario()}'>$linhas->getNome()</option>";
                         }
                         ?>
             </select>
-    Data<input type="text" name="data" value="<?php echo $eu->data;?>"><br>
-    Descricao<input type="text" name="descricao" value="<?php echo $eu->descricao;?>"><br>
-    Hora<input type="text" name="hora" value="<?php echo $eu->hora;?>"><br>
-    <input type="hidden" name="idagendamento" value="<?php echo $eu->idagendamento;?>"><br>
+    Data<input type="text" name="data" value="<?php echo $novo->getData();?>"><br>
+    Descricao<input type="text" name="descricao" value="<?php echo $novo->getDdescricao;?>"><br>
+    Hora<input type="text" name="hora" value="<?php echo $novo->getHora;?>"><br>
+    <input type="hidden" name="idagendamento" value="<?php echo $novo->getIdagendamento();?>"><br>
     <input type="submit"/>
     
 </form>

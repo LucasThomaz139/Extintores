@@ -13,12 +13,12 @@ $liscadastro=$listado->lista($listado);
         <form method="GET" action="../agendamento/adicionarok.php">
                
            
-            cliente:<select  name="cadastro_usuario">
+            cliente:<select  name="cadastro_idusuario">
                         <option value="">selecionar</option>
                 <?php
                         foreach($liscadastro as $linha)
                         {
-                            echo "<option value='$linha->getIdusuario()'>".$linha->getNome()."</option>";
+                            echo "<option value='{$linha->getIdusuario()}'>".$linha->getNome()."</option>";
                         }
                         ?>
                         </select><br>

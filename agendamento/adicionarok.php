@@ -7,9 +7,9 @@
  */
 include_once '../class/Agendamento.class.php';
 $agencia=new Agendamento();
-$agencia->setCadastro_usuario($_GET['cadastro_usuario']);
+$agencia->setCadastro_idusuario($_GET['cadastro_idusuario']);
 $agencia->setData($_GET['data']);
-$agencia->setHora($_GET['hora']);
 $agencia->setDescricao($_GET['descricao']);
+$agencia->setHora($_GET['hora']);
 $agencia->adicionar($agencia);
 var_dump($agencia);

@@ -1,8 +1,8 @@
 <?php
 include_once "../class/Agendamento.class.php";
 $agencia=new Agendamento();
-$resultados = $agencia->lista($agencia);
-var_dump($resultados);
+$ros=$agencia->lista();
+
 ?>
 <body>
     <table>
@@ -18,14 +18,16 @@ var_dump($resultados);
         <tbody>
             <?php
             
-            foreach ($resultados as $linhas)
+            foreach ($ros as $linhas)
             {
             echo"<tr>";
-            echo "<td>".$linhas->getIdagendamento()."</td>";
-            echo "<td>".$linhas->getCadastro_usuario()."</td>";
-            echo "<td>".$linhas->getData()."</td>";
-            echo "<td>".$linhas->getDescricao()."</td>";
-            echo "<td>".$linhas->getHora()."</td>";
+            echo "<td>".$linhas->getIdagendamento(':idagendamento')."</td>";
+            echo "<td>".$linhas->getCadastro_usuario(':cadastro_idusuario')."</td>";
+            echo "<td>".$linhas->getData(':data')."</td>";
+            echo "<td>".$linhas->getDescricao(':descricao')."</td>";
+            echo "<td>".$linhas->getHora(':hora')."</td>";
+            echo"<td><a href='../agendamento/editar.php?idagendamento=" . $linhas->getIdagendamento(':idagendamento') . "'>editar</a></td>";
+            echo"<td><a href='../agendamento/excluir.php?idagendamento=" . $linhas->getIdagendamento(':idagendamento') . "'>excluir</a></td></tr>";
             echo "</tr>";
             
            }
