@@ -106,9 +106,9 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT*FROM produto WHERE idproduto=:idproduto ";
+            $sql ="SELECT*FROM produto WHERE idprodutos=:idprodutos ";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idproduto", $produtos->getIdproduto());
+            $prepara->bindValue(":idprodutos", $produtos->getIdprodutos());
             $prepara->bindValue(":nome", $produtos->getNome());
             $prepara->bindValue(":valor", $produtos->getValor());
             $prepara->bindValue(":tipo", $produtos->getTipo());
@@ -121,7 +121,7 @@ function adicionar($produtos) {
             $lista = null;
             while($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
                 $listando=new Cadastro();
-                $listando->idproduto=$pegando['idproduto'];
+                $listando->idprodutos=$pegando['idprodutos'];
                 $listando->nome=$pegando['nome'];
                 $listando->valor=$pegando['valor'];
                 $listando->tipo=$pegando['tipo'];
@@ -150,9 +150,9 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-             $sql ="SELECT*FROM produto WHERE idproduto=:idproduto ";
+             $sql ="SELECT*FROM produto WHERE idprodutos=:idprodutos ";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idproduto", $produtos->getIdproduto());
+            $prepara->bindValue(":idprodutos", $produtos->getIdprodutos());
             $prepara->bindValue(":nome", $produtos->getNome());
             $prepara->bindValue(":valor", $produtos->getValor());
             $prepara->bindValue(":tipo", $produtos->getTipo());
@@ -165,7 +165,7 @@ function adicionar($produtos) {
             $lista = null;
             if($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
                 $listando=new Cadastro();
-                $listando->idproduto=$pegando['idproduto'];
+                $listando->idprodutos=$pegando['idprodutos'];
                 $listando->nome=$pegando['nome'];
                 $listando->valor=$pegando['valor'];
                 $listando->tipo=$pegando['tipo'];
@@ -194,10 +194,10 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE produtos SET  nome=:nome,valor=:valor,tipo=:tipo,descricao=:descricao,quantidade=:quantidade,status=:status,imagem=:imagem WHERE idproduto =:idproduto";
+            $sql = "UPDATE produtos SET  nome=:nome,valor=:valor,tipo=:tipo,descricao=:descricao,quantidade=:quantidade,status=:status,imagem=:imagem WHERE idprodutos =:idprodutos";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
-           $prepara->bindValue(":idproduto", $produtos->getIdproduto());
+           $prepara->bindValue(":idprodutos", $produtos->getIdprodutos());
             $prepara->bindValue(":nome", $produtos->getNome());
             $prepara->bindValue(":valor", $produtos->getValor());
             $prepara->bindValue(":tipo", $produtos->getTipo());
@@ -227,9 +227,9 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE*FROM produtos WHERE idagendamento=:idagendamento";
+            $sql = "DELETE*FROM produtos WHERE idprodutos=:idprodutos";
             $prepara=$conecta->prepare($sql);
-            $prepara->bindValue(":idproduto",$produtos->getIdproduto());
+            $prepara->bindValue(":idprodutos",$produtos->getIdprodutos());
             $prepara->execute();
             $conecta->commit();
             

@@ -255,22 +255,6 @@ class Cadastro {
             $prepara->bindValue(":email", $cadastro->getEmail());
             $prepara->bindValue(":senha", $cadastro->getSenha());
             $prepara->execute();
-             $sq = "SELECT nome,telefonetra,razaosocial,cnpjt,email,senha FROM extintores WHERE nome=:nome or  telefonetra=:telefonetra or razaosocial=:razaosocial or email=:email or senha=:senha";
-            $prepare = $conecta->prepare($sq);
-            $prepare->bindValue(":nome", $cadastro->getNome());
-            $prepare->bindValue(":telefonetra", $cadastro->getTelefonetra());
-            $prepare->bindValue(":razaosocial", $cadastro->getRazaosocial());
-            $prepare->bindValue(":cnpjt", $cadastro->getCnpjt());
-            $prepare->bindValue(":email", $cadastro->getEmail());
-            $prepare->bindValue(":senha", $cadastro->getSenha());
-            $prepare->execute();
-            if ( $prepare->rowCount() < 0) {
-                echo "as informação não pode ser vazias exeto o telefone pessoal e endereço os outro são obrigado digite de novo";
-                header("location:../cadastrando/listar.php");
-                throw new InvalidArgumentException(":email" . ":celular");
-            } else {
-                echo "sucesso";
-            }
             $conecta->commit();
             
         } catch (PDOException $exc) {

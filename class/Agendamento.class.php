@@ -3,7 +3,7 @@
 
 class Agendamento {
     private $idagendamento;
-    private $cadastro_usuario;
+    private $cadastro_idusuario;
     private $data;
     private $descricao;
     private $hora;
@@ -11,8 +11,8 @@ class Agendamento {
         return $this->idagendamento;
     }
 
-    function getCadastro_usuario() {
-        return $this->cadastro_usuario;
+    function getCadastro_idusuario() {
+        return $this->cadastro_idusuario;
     }
 
     function getData() {
@@ -31,8 +31,8 @@ class Agendamento {
         $this->idagendamento = $idagendamento;
     }
 
-    function setCadastro_usuario($cadastro_usuario) {
-        $this->cadastro_usuario = $cadastro_usuario;
+    function setCadastro_idusuario($cadastro_idusuario) {
+        $this->cadastro_idusuario = $cadastro_idusuario;
     }
 
     function setData($data) {
@@ -51,15 +51,16 @@ class Agendamento {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "INSERT INTO agendamento(cadastro_idusuario,data,descricao,hora) VALUES(:cadastro_usuario,:data,:descricao,:hora)";
+            $sql = "INSERT INTO agendamento(cadastro_idusuario,data,descricao,hora) VALUES(:cadastro_idusuario,:data,:descricao,:hora)";
             print_r($sql);
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":cadastro_usuario", $agenda->getCadastro_usuario());
+            $prepara->bindValue(":cadastro_idusuario", $agenda->getCadastro_idusuario());
             $prepara->bindValue(":data", $agenda->getData());
             $prepara->bindValue(":descricao", $agenda->getDescricao());
             $prepara->bindValue(":hora", $agenda->getHora());
             $prepara->execute();
             $conecta->commit();
+           
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();
@@ -73,25 +74,21 @@ class Agendamento {
         }
     }
         
-    function lista($agendar) {
+    function lista() {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT agendamento.*,cadastro.nome as cadastros FROM agendamento INNER JOIN usuario ON agendamento.idagendameto=usuario.idusuario ";
+            $sql ="SELECT agendamento.*,cadastro.nome as cadastro_idusuario FROM agendamento INNER JOIN cadastro ON agendamento.idagendameto=cadastro.idusuario ";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idagendamento", $agendar->getIdagendamento());
-            $prepara->bindValue(":cadastro_usuario", $agendar->getCadastro_usuario());
-            $prepara->bindValue(":data", $agendar->getData());
-           $prepara->bindValue(":descricao", $agendar->getDescricao());
-            $prepara->bindValue(":hora", $agendar->getHora());
+            $prepara->bindValue(":idagendamento", PDO::PARAM_STR);
             $prepara->execute();
             $conecta->commit();
             $lista = null;
             while($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Cadastro();
+                $listando=new Agendamento();
                 $listando->idagendamento=$pegando['idagendamento'];
-                $listando->cadastro_usuario=$pegando['cadastros'];
+                $listando->cadastro_idusuario=$pegando['cadastro_idusuario'];
                 $listando->data=$pegando['data'];
                 $listando->descricao=$pegando['descricao'];
                 $listando->hora=$pegando['hora'];
@@ -110,7 +107,7 @@ class Agendamento {
             }
         }
     }
-     function verificador($agendar){
+     function verificador(){
         
          $conecta;
         try {
@@ -118,18 +115,14 @@ class Agendamento {
             $conecta->beginTransaction();
             $sql = "SELECT*FROM agendamento WHERE idagendamento=:idagendamento";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idagendamento", $agendar->getIdagendamento());
-            $prepara->bindValue(":cadastro_usuario", $agendar->getCadastro_usuario());
-            $prepara->bindValue(":data", $agendar->getData());
-            $prepara->bindValue(":descricao", $agendar->getDescricao());
-            $prepara->bindValue(":hora", $agendar->getHora());
+            $prepara->bindValue(":idagendamento",PDO::PARAM_STR);
             $prepara->execute();
             $conecta->commit();
             $lista = null;
-            if($pegando=$prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Cadastro();
+            if($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
+                $listando=new Agendamento();
                 $listando->idagendamento=$pegando['idagendamento'];
-                $listando->cadastro_usuario=$pegando['cadastro_usuario'];
+                $listando->cadastro_idusuario=$pegando['cadastro_idusuario'];
                 $listando->data=$pegando['data'];
                 $listando->descricao=$pegando['descricao'];
                 $listando->hora=$pegando['hora'];
@@ -149,19 +142,15 @@ class Agendamento {
      }
      
             }
-          function salvar($agendar){
+          function salvar(){
          $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE agendamento SET  cadastro_idusuario=:cadastro,data=:data,descricao=:descricao,hora=:hora WHERE idagendamento =:idagendamento";
+            $sql = "UPDATE agendamento SET  cadastro_idusuario=:cadastro_idusuario,data=:data,descricao=:descricao,hora=:hora WHERE idagendamento =:idagendamento";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idagendamento", $agendar->getIdagendamento());
-            $prepara->bindValue(":cadastro_usuario", $agendar->getCadastro_usuario());
-            $prepara->bindValue(":data", $agendar->getData());
-            $prepara->bindValue(":descricao", $agendar->getDescricao());
-            $prepara->bindValue(":hora", $agendar->getHora());
+            $prepara->bindValue(":idagendamento", PDO::PARAM_STR);
             
             $prepara->execute();
              $conecta->commit();
@@ -180,7 +169,7 @@ class Agendamento {
         
     }
         
-     public function excluir($agendar) {
+     public function excluir() {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
