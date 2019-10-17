@@ -79,22 +79,26 @@ class Agendamento {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT agendamento.*,cadastro.nome as cadastro_idusuario FROM agendamento INNER JOIN cadastro ON agendamento.idagendameto=cadastro.idusuario ";
+            $sql ="SELECT agendamento.*,cadastro.nome as cadastro_idusuario FROM agendamento INNER JOIN cadastro ON agendamento.cadastro_idusuario=cadastro.idusuario ";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idagendamento", PDO::PARAM_STR);
-            $prepara->execute();
-            $conecta->commit();
-            $lista = null;
-            while($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Agendamento();
-                $listando->idagendamento=$pegando['idagendamento'];
-                $listando->cadastro_idusuario=$pegando['cadastro_idusuario'];
-                $listando->data=$pegando['data'];
-                $listando->descricao=$pegando['descricao'];
-                $listando->hora=$pegando['hora'];
-                $lista[] = $listando;                
-            }
-            return $lista;
+
+            $b = $prepara->execute();
+            $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
+            //var_dump("ver", $pegando);
+            //$conecta->commit();
+            //$lista = null;
+//            while($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
+//                $listando=new Agendamento();
+//                $listando->idagendamento=$pegando['idagendamento'];
+//                $listando->cadastro_idusuario=$pegando['cadastro_idusuario'];
+//                $listando->data=$pegando['data'];
+//                $listando->descricao=$pegando['descricao'];
+//                $listando->hora=$pegando['hora'];
+//                $lista[] = $listando;
+//
+//                //var_dump($listando);
+//            }
+            return $pegando;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();
@@ -107,28 +111,32 @@ class Agendamento {
             }
         }
     }
-     function verificador(){
-        
+     function verificador($agenda){
          $conecta;
+         //var_dump($agenda);
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
             $sql = "SELECT*FROM agendamento WHERE idagendamento=:idagendamento";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idagendamento",PDO::PARAM_STR);
+            $prepara->bindValue(":idagendamento",$agenda->getIdagendamento());
+
             $prepara->execute();
-            $conecta->commit();
-            $lista = null;
-            if($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Agendamento();
-                $listando->idagendamento=$pegando['idagendamento'];
-                $listando->cadastro_idusuario=$pegando['cadastro_idusuario'];
-                $listando->data=$pegando['data'];
-                $listando->descricao=$pegando['descricao'];
-                $listando->hora=$pegando['hora'];
-                $lista=$listando;
-            }
-            return $lista;
+            $b = $prepara->fetch(PDO::FETCH_ASSOC);
+            
+            //var_dump($b);
+            //$conecta->commit();
+            //$lista = null;
+//            if($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
+//                $listando=new Agendamento();
+//                $listando->idagendamento=$pegando['idagendamento'];
+//                $listando->cadastro_idusuario=$pegando['cadastro_idusuario'];
+//                $listando->data=$pegando['data'];
+//                $listando->descricao=$pegando['descricao'];
+//                $listando->hora=$pegando['hora'];
+//                $lista=$listando;
+//            }
+            return $b;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();

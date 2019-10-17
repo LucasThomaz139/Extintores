@@ -74,10 +74,12 @@ class Produtos {
 
 function adicionar($produtos) {
         $conecta;
+
+
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "INSERT INTO produto(nome,valor,tipo,descricao,quantidade,status,imagem) VALUES(:nome,:valor,:tipo,:descricao,:quantidade,:status,:imagem)";
+            $sql = "INSERT INTO produtos(nome,valor,tipo,descrisao,quantidade,status,imagem) VALUES(:nome,:valor,:tipo,:descricao,:quantidade,:status,:imagem)";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":nome", $produtos->getNome());
             $prepara->bindValue(":valor", $produtos->getValor());
@@ -87,7 +89,10 @@ function adicionar($produtos) {
             $prepara->bindValue(":status", $produtos->getStatus());
             $prepara->bindValue(":imagem", $produtos->getImagem());
             $prepara->execute();
-            $conecta->commit();
+            $b = $conecta->commit();
+            
+            return $b;
+            
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();
@@ -101,37 +106,46 @@ function adicionar($produtos) {
         }
     }
         
-    function lista($produtos) {
+    function listas() {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT*FROM produto WHERE idprodutos=:idprodutos ";
+            $sql ="SELECT*FROM produtos WHERE idprodutos=:idprodutos";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idprodutos", $produtos->getIdprodutos());
-            $prepara->bindValue(":nome", $produtos->getNome());
-            $prepara->bindValue(":valor", $produtos->getValor());
-            $prepara->bindValue(":tipo", $produtos->getTipo());
-            $prepara->bindValue(":descricao", $produtos->getDescricao());
-            $prepara->bindValue(":quantidade", $produtos->getQuantidade());
-            $prepara->bindValue(":status", $produtos->getStatus());
-            $prepara->bindValue(":imagem", $produtos->getImagem());
-            $prepara->execute();
-            $conecta->commit();
-            $lista = null;
-            while($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Cadastro();
-                $listando->idprodutos=$pegando['idprodutos'];
-                $listando->nome=$pegando['nome'];
-                $listando->valor=$pegando['valor'];
-                $listando->tipo=$pegando['tipo'];
-                $listando->descricao=$pegando['descricao'];
-                $listando->quantidade=$pegando['quantidade'];
-                $listando->status=$pegando['status'];
-                $listando->imagem=$pegando['imagem'];
-                $lista[] = $listando;                
+            
+            $b = $prepara->execute();
+            $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
+//            $conecta->commit();
+
+            var_dump($pegando);
+            return $pegando;
+        } catch (PDOException $exc) {
+            if ((isset($conecta)) && ($conecta->inTransaction())) {
+                $conecta->rollBack();
             }
-            return $lista;
+            PRINT($exc->getMessage());
+            return FALSE;
+        } finally {
+            if (isset($conecta)) {
+                unset($conecta);
+            }
+        }
+    }
+    function listandos() {
+        $conecta;
+        try {
+            $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
+            $conecta->beginTransaction();
+            $sql ="SELECT*FROM produtos";
+            $prepara = $conecta->prepare($sql);
+            
+            $b = $prepara->execute();
+            $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
+//            $conecta->commit();
+
+            //var_dump($pegando);
+            return $pegando;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();

@@ -239,6 +239,7 @@ class Cadastro {
     }
     function salvar($cadastro){
          $conecta;
+         //var_dump("aaaa", $cadastro);
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
@@ -254,8 +255,10 @@ class Cadastro {
             $prepara->bindValue(":endereco", $cadastro->getEndereco());
             $prepara->bindValue(":email", $cadastro->getEmail());
             $prepara->bindValue(":senha", $cadastro->getSenha());
-            $prepara->execute();
-            $conecta->commit();
+            $a  = $prepara->execute();
+            //$conecta->commit();
+            
+            return $a; 
             
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
@@ -270,16 +273,19 @@ class Cadastro {
         }
         
     }
-    public function excluir() {
+    public function excluir($cadastro) {
         $conecta;
+        var_dump($cadastro);
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE*FROM cadastro WHERE idususario=:idusuario";
+            $sql = "DELETE*FROM cadastro WHERE idusuario=:idusuario";
             $prepara=$conecta->prepare($sql);
-            $prepara->bindValue(":idusuario",PDO::PARAM_STR);
-            $prepara->execute();
+           $prepara->bindValue(":idusuario", $cadastro->getIdusuario());
+            $pegando=$prepara->execute();
             $conecta->commit();
+            return $pegando;
+            
             
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {

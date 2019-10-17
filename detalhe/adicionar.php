@@ -4,7 +4,7 @@ include_once '../class/Produtos.class.php';
 include_once '../class/Agendamento.class.php';
 include_once '../class/Cadastro.class.php';
 $pro= new Produtos();
-$ret=$pro->lista($pro);
+$ret=$pro->listas();
 $cas= new Cadastro();
 $bem=$cas->lista($cas);
 $age= new Agendamento();
@@ -14,9 +14,9 @@ $bom=$age->lista();
     Produto:<select  name="produto_idprodutos">
                         <option value="">selecionar</option>
                 <?php
-                        foreach($ret as $linha)
+                        foreach($ret as $pro)
                         {
-                            echo "<option value='{$linha->getIdprodutos()}'>".$linha->getNome()."</option>";
+                            echo "<option value='{ $pro->getIdprodutos()}'>".$pro->getNome()."</option>";
                         }
                         ?>
                         </select><br>
@@ -33,12 +33,12 @@ $bom=$age->lista();
                         
     Agendamento:<select  name="agendamento_idagendamento">
                         <option value="">selecionar</option>
-                <?php
-                        foreach($bom as $linha)
-                        {
-                            echo "<option value='{$linha->getIdagendamento()}'>".$linha->getData()."</option>";
-                        }
-                        ?>
+                            <?php
+                                foreach($bom as $linha)
+                                {
+                                    echo "<option value='{$linha->getIdagendamento()}'>".$linha->getData()."</option>";
+                                }
+                            ?>
                         </select><br>
                         quantidade<input type="number" name="quantidade">
                         detalhe<input type="text" name="detalhe">

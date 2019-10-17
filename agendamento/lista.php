@@ -17,17 +17,17 @@ $ros=$agencia->lista();
         </thead>
         <tbody>
             <?php
-            
-            foreach ($ros as $linhas)
+            //var_dump($ros);
+            foreach ($ros as $agencia)
             {
             echo"<tr>";
-            echo "<td>".$linhas->getIdagendamento(':idagendamento')."</td>";
-            echo "<td>".$linhas->getCadastro_usuario(':cadastro_idusuario')."</td>";
-            echo "<td>".$linhas->getData(':data')."</td>";
-            echo "<td>".$linhas->getDescricao(':descricao')."</td>";
-            echo "<td>".$linhas->getHora(':hora')."</td>";
-            echo"<td><a href='../agendamento/editar.php?idagendamento=" . $linhas->getIdagendamento(':idagendamento') . "'>editar</a></td>";
-            echo"<td><a href='../agendamento/excluir.php?idagendamento=" . $linhas->getIdagendamento(':idagendamento') . "'>excluir</a></td></tr>";
+            echo "<td>".$agencia['idagendamento']."</td>";
+            echo "<td>".$agencia['cadastro_idusuario']."</td>";
+            echo "<td>".$agencia['data']."</td>";
+            echo "<td>".$agencia['descricao']."</td>";
+            echo "<td>".$agencia['hora']."</td>";
+            echo"<td><a href='../agendamento/editar.php?idagendamento=" . $agencia ['idagendamento']. "'>editar</a></td>";
+            echo"<td><a href='../agendamento/excluir.php?idagendamento=" . $agencia ['idagendamento']. "'>excluir</a></td></tr>";
             echo "</tr>";
             
            }
