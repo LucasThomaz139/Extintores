@@ -279,7 +279,7 @@ class Cadastro {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE*FROM cadastro WHERE idusuario=:idusuario";
+            $sql = "DELETE FROM cadastro WHERE idusuario=:idusuario";
             $prepara=$conecta->prepare($sql);
            $prepara->bindValue(":idusuario", $cadastro->getIdusuario());
             $pegando=$prepara->execute();

@@ -58,22 +58,23 @@ class Mensagem {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT*FROM mensagem WHERE idmensagem=:idmensagem ";
+            $sql ="SELECT*FROM mensagem";
            
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idmensagem", PDO::PARAM_STR);
-            $prepara->execute();
-             $conecta->commit();
-            $lista = null;
-            while($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Mensagem();
-                $listando->idmensagem=$pegando['idmensagem'];
-                $listando->mensagem=$pegando['mensagem'];
-                $listando->avaliacao=$pegando['avaliacao'];
-                $lista[] = $listando;                
-            }
-           
-            return $lista;
+            
+             $b = $prepara->execute();
+            $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
+//             $conecta->commit();
+//            $lista = null;
+//            while($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
+//                $listando=new Mensagem();
+//                $listando->idmensagem=$pegando['idmensagem'];
+//                $listando->mensagem=$pegando['mensagem'];
+//                $listando->avaliacao=$pegando['avaliacao'];
+//                $lista[] = $listando;                
+//            }
+ //var_dump($pegando);
+            return $pegando;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();
@@ -86,26 +87,29 @@ class Mensagem {
             }
         }
     }
-     function verificador(){
+     function verificador($men){
         
          $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "SELECT*FROM mensagem WHERE idmensagem=:idmensagem";
+            $sql = "SELECT*FROM mensagem WHERE idmensagem = :idmensagem";
             $prepara = $conecta->prepare($sql);
-             $prepara->bindValue(":idmensagem", PDO::PARAM_STR);
-            $prepara->execute();
-            $conecta->commit();
-            $lista = null;
-            if($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Cadastro();
-                $listando->idmensagem=$pegando['idmensagem'];
-                $listando->mensagem=$pegando['mensagem'];
-                $listando->avaliacao=$pegando['avaliacao'];
-                $lista = $listando;                
-            }
-            return $lista;
+             $prepara->bindValue(":idmensagem",$men->getIdmensagem());
+          
+              $prepara->execute();
+            $pegando = $prepara->fetch(PDO::FETCH_ASSOC);
+//            $conecta->commit();
+//            $lista = null;
+//            if($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
+//                $listando=new Cadastro();
+//                $listando->idmensagem=$pegando['idmensagem'];
+//                $listando->mensagem=$pegando['mensagem'];
+//                $listando->avaliacao=$pegando['avaliacao'];
+//                $lista = $listando;                
+//            }
+           // var_dump($pegando);
+            return $pegando;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();
@@ -124,11 +128,12 @@ class Mensagem {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE agendamento SET  mensagem=:mensagem,avaliacao=:avaliacao WHERE idmensagem =:idmensagem";
-            //print_r($sql);
+            $sql = "UPDATE mensagem SET  mensagem=:mensagem, avaliacao=:avaliacao WHERE idmensagem =:idmensagem";
+           // print_r($sql);
            $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":idmensagem", PDO::PARAM_STR);
             $prepara->execute();
+            var_dump($prepara);
              $conecta->commit();
             
         } catch (PDOException $exc) {
@@ -145,14 +150,14 @@ class Mensagem {
         
     }
         
-     public function excluir() {
+     public function excluir($men) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE*FROM mensagem WHERE idmensagem=:idmensagem";
+            $sql = "DELETE FROM mensagem WHERE idmensagem=:idmensagem";
             $prepara=$conecta->prepare($sql);
-            $prepara->bindValue(":idmensagem",PDO::PARAM_STR);
+            $prepara->bindValue(":idmensagem",$men->getIdmensagem());
             $prepara->execute();
             $conecta->commit();
             

@@ -61,29 +61,17 @@ class Servico {
         }
     }
         
-    function lista($lis) {
+    function lista() {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT*FROM servico WHERE idservico=:idservico ";
+            $sql ="SELECT*FROM servico";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idservico", $lis->getIdservico());
-            $prepara->bindValue(":nome", $lis->getNome());
-            $prepara->bindValue(":valor", $lis->getValor());
-            $prepara->bindValue(":descricao", $lis->getDescricao());
-            $prepara->execute();
-            $conecta->commit();
-            $lista = null;
-            while($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Servico();
-                $listando->idservico=$pegando['idservico'];
-                $listando->nome=$pegando['nome'];
-                $listando->valor=$pegando['valor'];
-                $listando->descricao=$pegando['descricao'];
-                $lista[] = $listando;                
-            }
-            return $lista;
+              $pego = $prepara->execute();
+            $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
+//           
+            return $pegando;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();
@@ -105,21 +93,10 @@ class Servico {
              $sql ="SELECT*FROM servico WHERE idservico=:idservico ";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":idservico",$ver->getIdservico());
-            $prepara->bindValue(":idservico",$ver->getNome());
-            $prepara->bindValue(":idservico",$ver->getValor());
-            $prepara->bindValue(":idservico",$ver->getDescricao());
             $prepara->execute();
-            $conecta->commit();
-            $lista = null;
-            if($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Servico();
-                $listando->idservico=$pegando['idservico'];
-                $listando->nome=$pegando['nome'];
-                $listando->valor=$pegando['valor'];
-                $listando->descricao=$pegando['descricao'];
-                $lista = $listando;                
-            }
-            return $lista;
+            $b = $prepara->fetch(PDO::FETCH_ASSOC);
+            //var_dump($b);
+            return $b;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();
@@ -144,7 +121,7 @@ class Servico {
            $prepara->bindValue(":idservico", $salva->getIdservico());
            $prepara->bindValue(":nome", $salva->getNome());
            $prepara->bindValue(":valor", $salva->getValor());
-           $prepara->bindValue(":descricao", $salva->getDescricao());
+           $prepara->bindValue(":descricao",$salva->getDescricao());
             $prepara->execute();
              $conecta->commit();
             
@@ -167,7 +144,7 @@ class Servico {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE*FROM servico WHERE idservico=:idservico";
+            $sql = "DELETE FROM servico WHERE idservico=:idservico";
             $prepara=$conecta->prepare($sql);
             $prepara->bindValue(":idservico",$ser->getIdservico());
             $prepara->execute();

@@ -5,7 +5,7 @@ $ros=$agencia->lista();
 
 ?>
 <body>
-    <table>
+    <table border="1">
         <thead>
            <tr>
                <th>código</th>

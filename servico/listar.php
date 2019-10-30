@@ -8,10 +8,10 @@
 
 include_once '../class/Servico.class.php';
 $ser=new Servico();
-$noss=$ser->lista($ser);
+$noss=$ser->lista();
 ?>
 <table>
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>Código</th>
@@ -23,12 +23,12 @@ $noss=$ser->lista($ser);
         <tbody>
             <?php
             foreach ($noss as $ser) {
-                echo "<tr><td>".$ser->getIdservico(':idservico')."</td>";
-                echo "<td>".$ser->getNome(':nome')."</td>";
-                echo "<td>".$ser->getValor(':valor')."</td>";
-                echo "<td>".$ser->getDescricao(':descricao')."</td>";
-                echo"<td><a href='../servico/editar.php?idservico=".$ser->getIdservico('idservico')."'>editar</a></td>";
-            echo"<td><a href='../servico/excluir.php?idservico=".$ser->getIdservico('idservico')."'>excluir</a></td></tr>";
+                echo "<tr><td>".$ser['idservico']."</td>";
+                echo "<td>".$ser['nome']."</td>";
+                echo "<td>".$ser['valor']."</td>";
+                echo "<td>".$ser['descricao']."</td>";
+                echo"<td><a href='../servico/editar.php?idservico=".$ser['idservico']."'>editar</a></td>";
+            echo"<td><a href='../servico/excluir.php?idservico=".$ser['idservico']."'>excluir</a></td></tr>";
             }
             ?>
                

@@ -2,7 +2,7 @@
 include_once '../class/Mensagem.class.php';
 $men= new Mensagem();
 $nos=$men->lista();
-print_r($nos);
+//print_r($nos);
 ?>
 <table border="1">
    <thead> <tr>
@@ -14,12 +14,12 @@ print_r($nos);
     
     <tbody>
         <?php
-        foreach ($nos as $linha) {
-            echo"<tr><td>".$linha->getIdmensagem(':idmensagem')."</td>";
-            echo"<td>".$linha->getMensagem(':mensagem')."</td>";
-            echo"<td>".$linha->getAvaliacao(':avaliacao')."</td>";
-            echo"<td><a href='../mensagem/editar.php?idmensagem=".$linha->getIdmensagem(':idmensagem')."'>editar</a></td>";
-            echo"<td><a href='../mensagem/excluir.php?idmensagem=".$linha->getIdmensagem(':idmensagem')."'>excluir</a></td></tr>";
+        foreach ($nos as $men) {
+            echo"<tr><td>".$men['idmensagem']."</td>";
+            echo"<td>".$men['mensagem']."</td>";
+            echo"<td>".$men['avaliacao']."</td>";
+            echo"<td><a href='../mensagem/editar.php?idmensagem=".$men['idmensagem']."'>editar</a></td>";
+            echo"<td><a href='../mensagem/excluir.php?idmensagem=".$men['idmensagem']."'>excluir</a></td></tr>";
 
         }
             

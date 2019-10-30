@@ -111,14 +111,14 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT*FROM produtos WHERE idprodutos=:idprodutos";
+            $sql ="SELECT*FROM produtos ";
             $prepara = $conecta->prepare($sql);
             
             $b = $prepara->execute();
             $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
 //            $conecta->commit();
 
-            var_dump($pegando);
+           // var_dump($pegando);
             return $pegando;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
@@ -132,64 +132,21 @@ function adicionar($produtos) {
             }
         }
     }
-    function listandos() {
-        $conecta;
-        try {
-            $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
-            $conecta->beginTransaction();
-            $sql ="SELECT*FROM produtos";
-            $prepara = $conecta->prepare($sql);
-            
-            $b = $prepara->execute();
-            $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
-//            $conecta->commit();
-
-            //var_dump($pegando);
-            return $pegando;
-        } catch (PDOException $exc) {
-            if ((isset($conecta)) && ($conecta->inTransaction())) {
-                $conecta->rollBack();
-            }
-            PRINT($exc->getMessage());
-            return FALSE;
-        } finally {
-            if (isset($conecta)) {
-                unset($conecta);
-            }
-        }
-    }
+    
      function verificador($produtos){
         
          $conecta;
+        // var_dump($produtos);
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-             $sql ="SELECT*FROM produto WHERE idprodutos=:idprodutos ";
+             $sql ="SELECT*FROM produtos WHERE idprodutos = :idprodutos ";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":idprodutos", $produtos->getIdprodutos());
-            $prepara->bindValue(":nome", $produtos->getNome());
-            $prepara->bindValue(":valor", $produtos->getValor());
-            $prepara->bindValue(":tipo", $produtos->getTipo());
-            $prepara->bindValue(":descricao", $produtos->getDescricao());
-            $prepara->bindValue(":quantidade", $produtos->getQuantidade());
-            $prepara->bindValue(":status", $produtos->getStatus());
-            $prepara->bindValue(":imagem", $produtos->getImagem());
             $prepara->execute();
-            $conecta->commit();
-            $lista = null;
-            if($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
-                $listando=new Cadastro();
-                $listando->idprodutos=$pegando['idprodutos'];
-                $listando->nome=$pegando['nome'];
-                $listando->valor=$pegando['valor'];
-                $listando->tipo=$pegando['tipo'];
-                $listando->descricao=$pegando['descricao'];
-                $listando->quantidade=$pegando['quantidade'];
-                $listando->status=$pegando['status'];
-                $listando->imagem=$pegando['imagem'];
-                $lista = $listando;                
-            }
-            return $lista;
+            $b = $prepara->fetch(PDO::FETCH_ASSOC);
+            //var_dump($b);
+            return $b;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();
@@ -208,7 +165,7 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE produtos SET  nome=:nome,valor=:valor,tipo=:tipo,descricao=:descricao,quantidade=:quantidade,status=:status,imagem=:imagem WHERE idprodutos =:idprodutos";
+            $sql = "UPDATE produtos SET  nome=:nome,valor=:valor,tipo=:tipo,descrisao=:descricao,quantidade=:quantidade,status=:status,imagem=:imagem WHERE idprodutos =:idprodutos";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
            $prepara->bindValue(":idprodutos", $produtos->getIdprodutos());
@@ -241,11 +198,11 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE*FROM produtos WHERE idprodutos=:idprodutos";
-            $prepara=$conecta->prepare($sql);
-            $prepara->bindValue(":idprodutos",$produtos->getIdprodutos());
-            $prepara->execute();
-            $conecta->commit();
+            $sql = "DELETE FROM produtos WHERE idprodutos=:idprodutos ";
+            $preparedStatment = $conecta->prepare($sql);
+            $preparedStatment->bindValue(":idprodutos",$produtos->getIdprodutos());
+            $preparedStatment->execute();
+           
             
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {

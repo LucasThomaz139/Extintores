@@ -52,7 +52,7 @@ class Agendamento {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
             $sql = "INSERT INTO agendamento(cadastro_idusuario,data,descricao,hora) VALUES(:cadastro_idusuario,:data,:descricao,:hora)";
-            print_r($sql);
+            //print_r($sql);
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":cadastro_idusuario", $agenda->getCadastro_idusuario());
             $prepara->bindValue(":data", $agenda->getData());
@@ -120,7 +120,6 @@ class Agendamento {
             $sql = "SELECT*FROM agendamento WHERE idagendamento=:idagendamento";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":idagendamento",$agenda->getIdagendamento());
-
             $prepara->execute();
             $b = $prepara->fetch(PDO::FETCH_ASSOC);
             
@@ -150,7 +149,7 @@ class Agendamento {
      }
      
             }
-          function salvar(){
+          function salvar($agenda){
          $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
@@ -158,7 +157,11 @@ class Agendamento {
             $sql = "UPDATE agendamento SET  cadastro_idusuario=:cadastro_idusuario,data=:data,descricao=:descricao,hora=:hora WHERE idagendamento =:idagendamento";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idagendamento", PDO::PARAM_STR);
+              $prepara->bindValue(":idagendamento", $agenda->getIdagendamento());
+              $prepara->bindValue(":cadastro_idusuario", $agenda->getCadastro_idusuario());
+            $prepara->bindValue(":data", $agenda->getData());
+            $prepara->bindValue(":descricao", $agenda->getDescricao());
+            $prepara->bindValue(":hora", $agenda->getHora());
             
             $prepara->execute();
              $conecta->commit();
@@ -177,14 +180,14 @@ class Agendamento {
         
     }
         
-     public function excluir() {
+     public function excluir($age) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE*FROM agendamento WHERE idagendamento=:idagendamento";
+            $sql = "DELETE FROM agendamento WHERE idagendamento=:idagendamento";
             $prepara=$conecta->prepare($sql);
-            $prepara->bindValue(":idagendamento",PDO::PARAM_STR);
+            $prepara->bindValue(":idagendamento", $age->getIdagendamento());
             $prepara->execute();
             $conecta->commit();
             

@@ -13,7 +13,7 @@
     $eu=$usuario->lista($usuario);
     ?>
 <form method="POST" action="../agendamento/editarok.php">
-    cliente<select  name="Cadastro_idusuario">
+    cliente<select  name="cadastro_idusuario">
                 <option value="">selecionar</option>
                 <?php
                     foreach($eu as $usuario)
