@@ -123,7 +123,7 @@ class Mensagem {
      }
      
             }
-          function salvar(){
+          function salvar($mensa){
          $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
@@ -131,9 +131,11 @@ class Mensagem {
             $sql = "UPDATE mensagem SET  mensagem=:mensagem, avaliacao=:avaliacao WHERE idmensagem =:idmensagem";
            // print_r($sql);
            $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idmensagem", PDO::PARAM_STR);
-            $prepara->execute();
-            var_dump($prepara);
+            $prepara->bindValue(":idmensagem", $mensa->getIdmensagem());
+            $prepara->bindValue(":mensagem", $mensa->getMensagem());
+            $prepara->bindValue(":avaliacao", $mensa->getAvaliacao());
+            $od=$prepara->execute();
+           var_dump($od);
              $conecta->commit();
             
         } catch (PDOException $exc) {
@@ -155,7 +157,7 @@ class Mensagem {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE FROM mensagem WHERE idmensagem=:idmensagem";
+            $sql = "DELETE FROM mensagem WHERE idmensagem= :idmensagem";
             $prepara=$conecta->prepare($sql);
             $prepara->bindValue(":idmensagem",$men->getIdmensagem());
             $prepara->execute();

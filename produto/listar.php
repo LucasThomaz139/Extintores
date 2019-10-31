@@ -31,7 +31,7 @@ $resultado = $listado->listas();
                     echo"<td>".$listado['descrisao']."</td>";
                     echo"<td>".$listado['quantidade']."</td>";
                     echo"<td>".$listado['status']."</td>";
-                    echo"<td>".$listado['imagem']."</td>";
+                    echo"<td><img width='50px' heigth='50px'src='../imagem/".$listado['imagem']."'/></td>";
                     echo"<td><a href='../produto/editar.php?idprodutos=" . $listado ['idprodutos']. "'>editar</a></td>";
                     echo"<td><a href='../produto/excluir.php?idprodutos=" . $listado ['idprodutos']. "'>excluir</a></td></tr>";
                 echo"</tr>";

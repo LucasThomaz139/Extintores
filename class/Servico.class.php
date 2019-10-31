@@ -115,7 +115,7 @@ class Servico {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE servico SET  nome=:nome,valor=:valor,descricao=:descricao WHERE idservico =:idservico";
+            $sql = "UPDATE servico SET  nome= :nome,valor= :valor, descricao= :descricao WHERE idservico =:idservico";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
            $prepara->bindValue(":idservico", $salva->getIdservico());
@@ -139,15 +139,15 @@ class Servico {
         
     }
         
-     public function excluir($ser) {
+     public function excluir($se) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE FROM servico WHERE idservico=:idservico";
+            $sql ="DELETE FROM servico WHERE idservico= :idservico";
             $prepara=$conecta->prepare($sql);
-            $prepara->bindValue(":idservico",$ser->getIdservico());
-            $prepara->execute();
+            $prepara->bindValue(":idservico",$se->getIdservico());
+            $b=$prepara->execute();
             $conecta->commit();
             
         } catch (PDOException $exc) {

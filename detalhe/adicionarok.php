@@ -8,6 +8,11 @@ $de->setAgendamento_idagendamento($_GET['agendamento_idagendamento']);
 $de->setQuantidade($_GET['quantidade']);
 $de->setDetalhe($_GET['detalhe']);
 $de->setValor($_GET['valor']);
-$den=$de->adicionar($de);
-var_dump($de);
 
+$den=$de->adicionar($de);
+
+if($den){
+    echo "tudo de boas";
+} else {
+    echo "deu ruim";
+}

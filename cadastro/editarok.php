@@ -12,7 +12,7 @@ $cadastrando->setEndereco($_POST['endereco']);
 $cadastrando->setEmail($_POST['email']);
 $cadastrando->setSenha($_POST['senha']);
 
-//var_dump($cadastrando);
+var_dump($cadastrando);
 $retorno=$cadastrando->salvar($cadastrando);
 
 var_dump("retorno", $retorno);

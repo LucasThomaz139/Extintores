@@ -9,6 +9,10 @@ $de->setAgendamento_idagendamento($_POST['agendamento_idagendamento']);
 $de->setQuantidade($_POST['quantidade']);
 $de->setDetalhe($_POST['detalhe']);
 $de->setValor($_POST['valor']);
-$den= $de->salvar($de);
+
 var_dump($de);
+
+$den= $de->salvar($de);
+
+var_dump($den);
 

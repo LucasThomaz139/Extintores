@@ -237,7 +237,63 @@ class Cadastro {
         }
         
     }
-    function salvar($cadastro){
+    function loginadm($log){
+        $conecta;
+         //var_dump("aaaa", $cadastro);
+        try {
+            $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
+            $conecta->beginTransaction();
+            $sql="SELECT*FROM cadastro WHERE email='lucas.thomaz.05.09.@gmail.com' and senha=:senha";
+            $prepara = $conecta->prepare($sql);
+            $prepara->bindValue(":senha", $log->getSenha());
+             $prepara->execute();
+            $b = $prepara->fetch(PDO::FETCH_ASSOC);
+            
+   
+            return $b;
+            
+        } catch (PDOException $exc) {
+            if ((isset($conecta)) && ($conecta->inTransaction())) {
+                $conecta->rollBack();
+            }
+            echo $exc->getMessage();
+            
+        } finally {
+            if (isset($conecta)) {
+                unset($conecta);
+            }
+        }
+    }
+    
+    function login($log){
+        $conecta;
+         //var_dump("aaaa", $cadastro);
+        try {
+            $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
+            $conecta->beginTransaction();
+            $sql="SELECT*FROM cadastro WHERE email=:email and senha=:senha";
+            $prepara = $conecta->prepare($sql);
+            $prepara->bindValue(":email", $log->getEmail());
+            $prepara->bindValue(":senha", $log->getSenha());
+             $prepara->execute();
+            $b = $prepara->fetch(PDO::FETCH_ASSOC);
+            
+   
+            return $b;
+            
+        } catch (PDOException $exc) {
+            if ((isset($conecta)) && ($conecta->inTransaction())) {
+                $conecta->rollBack();
+            }
+            echo $exc->getMessage();
+            
+        } finally {
+            if (isset($conecta)) {
+                unset($conecta);
+            }
+        }
+    }
+            function salvar($cadastro){
          $conecta;
          //var_dump("aaaa", $cadastro);
         try {
@@ -257,6 +313,7 @@ class Cadastro {
             $prepara->bindValue(":senha", $cadastro->getSenha());
             $a  = $prepara->execute();
             //$conecta->commit();
+            $conecta->commit();
             
             return $a; 
             
@@ -279,7 +336,7 @@ class Cadastro {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE FROM cadastro WHERE idusuario=:idusuario";
+            $sql = "DELETE FROM cadastro WHERE idusuario= :idusuario";
             $prepara=$conecta->prepare($sql);
            $prepara->bindValue(":idusuario", $cadastro->getIdusuario());
             $pegando=$prepara->execute();

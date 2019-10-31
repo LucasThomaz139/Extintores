@@ -16,7 +16,7 @@ $bom=$age->lista();
                 <?php
                         foreach($lisproduto as $listados)
                         {
-                            echo "<option value='{ $listados->getIdprodutos()}'>".$listados['nome']."</option>";
+                            echo "<option value='" .$listados['idprodutos']."'>".$listados['nome']."</option>";
                         }
                         ?>
                         </select><br>
@@ -26,7 +26,7 @@ $bom=$age->lista();
                 <?php
                         foreach($bem as $listado)
                         {
-                            echo "<option value='{ $listado->getIdservico()}'>".$listado['nome']."</option>";
+                            echo "<option value='".$listado['idservico']."'>".$listado['nome']."</option>";
                         }
                         ?>
                         </select><br>
@@ -36,7 +36,7 @@ $bom=$age->lista();
                             <?php
                                 foreach($bom as $age)
                                 {
-                                    echo "<option value='{ $age->getIdagendamento()}'>".$age['data']."</option>";
+                                    echo "<option value='".$age['idagendamento']."'>".$age['data']."</option>";
                                 }
                             ?>
                         </select><br>

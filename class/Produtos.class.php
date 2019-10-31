@@ -165,7 +165,7 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE produtos SET  nome=:nome,valor=:valor,tipo=:tipo,descrisao=:descricao,quantidade=:quantidade,status=:status,imagem=:imagem WHERE idprodutos =:idprodutos";
+            $sql = "UPDATE produtos SET  nome=:nome,valor=:valor,tipo= :tipo,descrisao=:descricao,quantidade=:quantidade,status=:status,imagem=:imagem WHERE idprodutos =:idprodutos";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
            $prepara->bindValue(":idprodutos", $produtos->getIdprodutos());
@@ -193,15 +193,17 @@ function adicionar($produtos) {
         
     }
         
-     public function excluir($produtos) {
+     public function excluir($pro) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
             $sql = "DELETE FROM produtos WHERE idprodutos=:idprodutos ";
             $preparedStatment = $conecta->prepare($sql);
-            $preparedStatment->bindValue(":idprodutos",$produtos->getIdprodutos());
-            $preparedStatment->execute();
+            $preparedStatment->bindValue(":idprodutos",$pro->getIdprodutos());
+            $b=$preparedStatment->execute();
+            var_dump($b);
+            $conecta->commit();
            
             
         } catch (PDOException $exc) {
