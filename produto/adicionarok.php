@@ -1,4 +1,7 @@
+<div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
 <?php
+ header("location:listar.php");
+include_once '../administrador/topo.php';
 include_once '../class/Produtos.class.php';
 $pro=new Produtos();
 $pro->setNome($_POST['nome']);
@@ -18,8 +21,7 @@ $pro->setImagem($nome);
 
 
 $eu=$pro->adicionar($pro);
-if ($eu) {
-    echo "sucesso";    
-}
 
+include_once '../administrador/rodape.php';
+?></div>
 

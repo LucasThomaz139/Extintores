@@ -1,10 +1,12 @@
 <?php
+include_once '../administrador/topo.php';
 include_once "../class/Agendamento.class.php";
 $agencia=new Agendamento();
 $ros=$agencia->lista();
 
 ?>
 <body>
+    <div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
     <table border="1">
         <thead>
            <tr>
@@ -34,5 +36,7 @@ $ros=$agencia->lista();
             ?>
         </tbody>
     </table>
-</body>
+ </div>
+<?php
+include_once '../administrador/rodape.php';
 

@@ -1,10 +1,11 @@
 <?php
-
+include_once '../administrador/topo.php';
 include_once '../class/Cadastro.class.php';
 $listando=new Cadastro();
 $resultado = $listando->lista($listando);
 ?>
-<table border="1">
+<div  width='-50px' heigth='999px' style='margin-left: 310px;margin-right: 900px; margin-top: 10%;'>
+<table   border="1">
    <thead> <tr>
         <th>Código</th>
         <th>Nome</th>
@@ -36,4 +37,6 @@ $resultado = $listando->lista($listando);
         ?>
     </tbody>
 </table>
-
+</div>
+<?php
+include_once '../administrador/rodape.php';

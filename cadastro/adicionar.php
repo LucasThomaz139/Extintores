@@ -1,4 +1,5 @@
 <?php
+include_once '../administrador/topo.php';
 include_once '../class/Cadastro.class.php';
 ?>
 <html>
@@ -7,17 +8,20 @@ include_once '../class/Cadastro.class.php';
         <meta charset="UTF-8">
     </head>
     <body>
+        <div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
         <form method="GET" action="adicionarok.php">
-        nome:<input type="text" name="nome">
-        telefone trabalho:<input type="number" name="telefonetra">
-        telefone pessoal:<input type="number" name="telefonepe">
-        Razão Social:<input type="text" name="razaosocial">
-        cnpjt:<input type="number" name="cnpjt">
-        Endereço:<input type="text" name="endereco">
-        Email:<input type="email" name="email">
-        Senha:<input type="password" name="senha">
-        <input type="submit" value="enviar">
+        nome:<input style="border: 1px solid black; display:block" type="text" name="nome">
+        telefone trabalho:<input style="border: 1px solid black; display:block" type="number" name="telefonetra">
+        telefone pessoal:<input style="border: 1px solid black; display:block" type="number" name="telefonepe">
+        Razão Social:<input style="border: 1px solid black; display:block" type="text" name="razaosocial">
+        cnpjt:<input style="border: 1px solid black; display:block" type="number" name="cnpjt">
+        Endereço:<input style="border: 1px solid black; display:block" type="text" name="endereco">
+        Email:<input style="border: 1px solid black; display:block" type="email" name="email">
+        Senha:<input style="border: 1px solid black; display:block" type="password" name="senha">
+        <input style="border: 1px solid black;" type="submit" value="enviar">
         </form>
-    </body>
-</html>
+           </div>
+<?php
+include_once '../administrador/rodape.php'; 
+
 

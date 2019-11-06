@@ -1,11 +1,12 @@
 <?php
+include_once '../administrador/topo.php';
 include_once '../class/Produtos.class.php';
 $listado = new Produtos();
-//var_dump($listado);
 $resultado = $listado->listas();
 ?>
+<div  width='600px' style='margin-left: 30%; margin-top: 10%'>
 <table border="1">
-            <thead>
+            
                 <tr>
                         <th>Código</th>
                         <th>Nome</th>
@@ -16,10 +17,7 @@ $resultado = $listado->listas();
                         <th>Status</th>
                         <th>Imagem</th>
                     
-                </tr>
-            </thead>
-            <tbody>
-            
+                </tr>                   
                 <?php
                 //var_dump($resultado);
                 foreach($resultado as $listado){
@@ -33,14 +31,11 @@ $resultado = $listado->listas();
                     echo"<td>".$listado['status']."</td>";
                     echo"<td><img width='50px' heigth='50px'src='../imagem/".$listado['imagem']."'/></td>";
                     echo"<td><a href='../produto/editar.php?idprodutos=" . $listado ['idprodutos']. "'>editar</a></td>";
-                    echo"<td><a href='../produto/excluir.php?idprodutos=" . $listado ['idprodutos']. "'>excluir</a></td></tr>";
-                echo"</tr>";
-                
+                    echo"<td><a href='../produto/excluir.php?idprodutos=" . $listado ['idprodutos']. "'>excluir</a></td></tr>";  
                 }
-                ?>
-            </tbody>
-                
-           
+                ?>           
 </table>
-
+</div>
+<?php
+include_once '../administrador/rodape.php';
  

@@ -5,11 +5,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+include_once '../administrador/topo.php';
 include_once '../class/Servico.class.php';
 $ser=new Servico();
 $noss=$ser->lista();
 ?>
+<div  width='600px' style='margin-left: 30%; margin-top: 10%'>
 <table>
     <table border="1">
         <thead>
@@ -35,3 +36,6 @@ $noss=$ser->lista();
         </tbody>
     </table>
 </table>
+</div>
+<?php
+            include_once '../administrador/rodape.php';

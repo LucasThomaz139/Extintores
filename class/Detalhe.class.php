@@ -94,16 +94,26 @@ class Detalhe {
             }
         }
     }
-     function lista() {
+     function lista($detalhe) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
             $sql ="SELECT detalhe.*,produtos.nome as produtos_idprodutos,servico.nome as servico_idservico,agendamento.data as agendamento_idagendamento FROM detalhe INNER JOIN produtos ON detalhe.produtos_idprodutos=produtos.idprodutos INNER JOIN servico ON detalhe.servico_idservico=servico.idservico INNER JOIN agendamento ON detalhe.agendamento_idagendamento=agendamento.idagendamento";
             $prepara = $conecta->prepare($sql);
+            $prepara->bindValue(":iddetalhe", $detalhe->getIddetalhe());
+            $prepara->bindValue(":produtos_idprodutos", $detalhe->getProdutos_idprodutos());
+            $prepara->bindValue(":servico_idservico", $detalhe->getServico_idservico());
+            $prepara->bindValue(":agendamento_idagendamento", $detalhe->getAgendamento_idagendamento());
+            $prepara->bindValue(":quantidade", $detalhe->getQuantidade());
+            $prepara->bindValue(":detalhe", $detalhe->getDetalhe());
+            $prepara->bindValue(":valor", $detalhe->getValor());
              $b = $prepara->execute();
-                $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
+//              $conecta->commit();
+            $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
+           
 
+         //  var_dump($b);
             return $pegando;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {

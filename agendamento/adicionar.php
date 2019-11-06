@@ -1,4 +1,5 @@
 <?php
+include_once '../administrador/topo.php';
 include_once '../class/Agendamento.class.php';
 include_once '../class/Cadastro.class.php';
 $listado=new cadastro();
@@ -10,10 +11,11 @@ $liscadastro=$listado->lista($listado);
         <meta charset="UTF-8">
     </head>
     <body>
+        <div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
         <form method="GET" action="../agendamento/adicionarok.php">
                
            
-            cliente:<select  name="cadastro_idusuario">
+            cliente:<select style="border: 1px solid black; display:block" name="cadastro_idusuario">
                         <option value="">selecionar</option>
                 <?php
                         foreach($liscadastro as $linha)
@@ -22,13 +24,16 @@ $liscadastro=$listado->lista($listado);
                         }
                         ?>
                         </select><br>
-                        <label>Data</label><input type="date" name="data"/><br>
-            <label>Hora</label><input type="time" name="hora"/><br>
-            Descrição<input type="text" name="descricao"/><br>
+                        <label>Data</label><input style="border: 1px solid black; display:block" type="date" name="data"/><br>
+            <label>Hora</label><input style="border: 1px solid black; display:block" type="time" name="hora"/><br>
+            Descrição<input style="border: 1px solid black; display:block" type="text" name="descricao"/><br>
                         
-          <input type="submit" value="enviar">
+          <input style="border: 1px solid black;" type="submit" value="enviar">
             
         </form>
-    </body>
-</html>
+             </div>
+<?php
+include_once '../administrador/rodape.php';
+
+
 

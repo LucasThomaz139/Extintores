@@ -1,5 +1,7 @@
+<div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
 <?php
-
+ header("location:listar.php");
+include_once '../administrador/topo.php';
 include_once '../class/Detalhe.class.php';
 $de = new Detalhe();
 $de->setIddetalhe($_POST['iddetalhe']);
@@ -9,10 +11,8 @@ $de->setAgendamento_idagendamento($_POST['agendamento_idagendamento']);
 $de->setQuantidade($_POST['quantidade']);
 $de->setDetalhe($_POST['detalhe']);
 $de->setValor($_POST['valor']);
-
-var_dump($de);
-
 $den= $de->salvar($de);
 
-var_dump($den);
-
+include_once '../administrador/rodape.php';
+?>
+</div>

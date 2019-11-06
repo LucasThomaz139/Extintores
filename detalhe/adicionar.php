@@ -1,4 +1,5 @@
 <?php
+include_once '../administrador/topo.php';
 include_once '../class/Detalhe.class.php';
 include_once '../class/Produtos.class.php';
 include_once '../class/Agendamento.class.php';
@@ -10,8 +11,9 @@ $bem=$listado->lista();
 $age= new Agendamento();
 $bom=$age->lista();
 ?>
+<div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
 <form method="GET" action="adicionarok.php">
-    Produto:<select  name="produtos_idprodutos">
+    Produto:<select   style="border: 1px solid black; display:block" name="produtos_idprodutos">
                         <option value="">selecionar</option>
                 <?php
                         foreach($lisproduto as $listados)
@@ -21,7 +23,7 @@ $bom=$age->lista();
                         ?>
                         </select><br>
                         
-    Serviços:<select  name="servico_idservico">
+    Serviços:<select style="display:block" name="servico_idservico">
                         <option value="">selecionar</option>
                 <?php
                         foreach($bem as $listado)
@@ -31,7 +33,7 @@ $bom=$age->lista();
                         ?>
                         </select><br>
                         
-    Agendamento:<select  name="agendamento_idagendamento">
+    Agendamento:<select <select style="display:block" name="agendamento_idagendamento">
                         <option value="">selecionar</option>
                             <?php
                                 foreach($bom as $age)
@@ -40,9 +42,12 @@ $bom=$age->lista();
                                 }
                             ?>
                         </select><br>
-                        quantidade<input type="number" name="quantidade">
-                        detalhe<input type="text" name="detalhe">
-                        valor<input type="number" name="valor">
+                        quantidade<input style="border: 1px solid black; display:block" type="number" name="quantidade">
+                        detalhe<input style="border: 1px solid black; display:block" type="text" name="detalhe">
+                        valor<input style="border: 1px solid black; display:block" type="number" name="valor">
                         <input type="submit" value="enviar">
 </form>
+</div>
+<?php
+include_once '../administrador/rodape.php';
 

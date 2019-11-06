@@ -1,9 +1,11 @@
 <?php
+include_once '../administrador/topo.php';
 include_once '../class/Mensagem.class.php';
 $men= new Mensagem();
 $nos=$men->lista();
 //print_r($nos);
 ?>
+<div  width='600px' style='margin-left: 30%; margin-top: 10%'>
 <table border="1">
    <thead> <tr>
         <th>Código</th>
@@ -28,5 +30,7 @@ $nos=$men->lista();
         ?>
     </tbody>
 </table>
-
+</div>
+<?php
+include_once '../administrador/rodape.php';
 

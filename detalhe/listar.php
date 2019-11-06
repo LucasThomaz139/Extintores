@@ -1,10 +1,11 @@
 <?php
-
+include_once '../administrador/topo.php';
 include_once '../class/Detalhe.class.php';
 $de= new Detalhe();
-$den=$de->lista();
-//print_r($nos);
+$den=$de->lista($de);
+//var_dump($den);
 ?>
+<div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
 <table border="1">
    <thead> <tr>
         <th>Código</th>
@@ -36,4 +37,6 @@ $den=$de->lista();
         
         ?>
     </tbody>
-</table>
+</table></div>
+<?php
+include_once '../administrador/rodape.php';

@@ -198,11 +198,10 @@ function adicionar($produtos) {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "DELETE FROM produtos WHERE idprodutos=:idprodutos ";
-            $preparedStatment = $conecta->prepare($sql);
-            $preparedStatment->bindValue(":idprodutos",$pro->getIdprodutos());
-            $b=$preparedStatment->execute();
-            var_dump($b);
+            $sql ="DELETE FROM produtos WHERE idprodutos= :idprodutos ";
+            $prepara = $conecta->prepare($sql);
+            $prepara->bindValue(":idprodutos",$pro->getIdprodutos());
+            $prepara->execute();
             $conecta->commit();
            
             

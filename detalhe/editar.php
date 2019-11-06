@@ -1,5 +1,5 @@
 <?php
-
+include_once '../administrador/topo.php';
 include_once '../class/Detalhe.class.php';
 include_once '../class/Produtos.class.php';
 include_once '../class/Servico.class.php';
@@ -18,8 +18,9 @@ $bem=$listado->lista();
 $age= new Agendamento();
 $bom=$age->lista();
 ?>
+<div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
 <form method="POST" action="editarok.php">
-    Produto:<input type="text" disabled value="<?php echo $den['produtos_idprodutos'] ?>"/><select  name="produtos_idprodutos">
+    Produto:<input style="border: 1px solid black; display:block" type="text" disabled value="<?php echo $den['produtos_idprodutos'] ?>"/><select  name="produtos_idprodutos">
                         <option value="">selecionar</option>
                 <?php
                         foreach($lisproduto as $listados)
@@ -29,7 +30,7 @@ $bom=$age->lista();
                         ?>
                         </select><br>
                         
-    Serviços:<input type="text" disabled value="<?php echo $den['servico_idservico'] ?>"/><select  name="servico_idservico">
+    Serviços:<input style="border: 1px solid black; display:block" type="text" disabled value="<?php echo $den['servico_idservico'] ?>"/><select  name="servico_idservico">
                         <option value="">selecionar</option>
                 <?php
                         foreach($bem as $listado)
@@ -39,7 +40,7 @@ $bom=$age->lista();
                         ?>
                         </select><br>
                         
-    Agendamento:<input type="text" disabled value="<?php echo $den['agendamento_idagendamento'] ?>"/><select  name="agendamento_idagendamento">
+    Agendamento:<input style="border: 1px solid black; display:block" type="text" disabled value="<?php echo $den['agendamento_idagendamento'] ?>"/><select  name="agendamento_idagendamento">
                         <option value="">selecionar</option>
                             <?php
                                 foreach($bom as $age)
@@ -48,8 +49,10 @@ $bom=$age->lista();
                                 }
                             ?>
                         </select><br>
-                        quantidade<input type="number" name="quantidade" value="<?php echo $den['quantidade']?>"/>
-                        detalhe<input type="text" name="detalhe" value="<?php echo $den['detalhe']?>"/>
-                        valor<input type="number" name="valor" value="<?php echo $den['valor']?>"/>
-                        <input type="hidden" name="iddetalhe" value="<?php echo $den['iddetalhe'];?>"/>
-                        <input type="submit" value="enviar">
+                        quantidade<input style="border: 1px solid black; display:block" type="number" name="quantidade" value="<?php echo $den['quantidade']?>"/>
+                        detalhe<input style="border: 1px solid black; display:block" type="text" name="detalhe" value="<?php echo $den['detalhe']?>"/>
+                        valor<input style="border: 1px solid black; display:block" type="number" name="valor" value="<?php echo $den['valor']?>"/>
+                        <input style="border: 1px solid black" type="hidden" name="iddetalhe" value="<?php echo $den['iddetalhe'];?>"/>
+                        <input style="border: 1px solid black" type="submit" value="enviar"></form></div>
+<?php
+include_once '../administrador/rodape.php';

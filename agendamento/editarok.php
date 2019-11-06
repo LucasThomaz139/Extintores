@@ -1,5 +1,7 @@
+<div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
 <?php
-
+ header("location:lista.php");
+include_once '../administrador/topo.php';
 include_once '../class/Agendamento.class.php';
 $agencia=new Agendamento();
 $agencia->setIdagendamento($_POST['idagendamento']);
@@ -8,9 +10,7 @@ $agencia->setData($_POST['data']);
 $agencia->setDescricao($_POST['descricao']);
 $agencia->setHora($_POST['hora']);
 $eu=$agencia->salvar($agencia);
-if($eu)
-{
-    echo"com sucesso";
-   
-    
-}
+
+include_once '../administrador/rodape.php';
+?>
+</div>
