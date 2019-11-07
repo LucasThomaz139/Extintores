@@ -1,4 +1,10 @@
-
+<?php
+session_start();
+if(!isset($_SESSION['administrador']) && !isset($_SESSION['login']))
+{
+    header("location:../login/logar.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,9 +56,10 @@
                 <div class="menu-sidebar2__content js-scrollbar1">
                     <div class="account2">
                         <h4 class="name">Casas de Extintores</h4>
-                        <a href="#">Sign out</a>
-                        <a href="login.html">
+                       <a href="../login/logar.php">Sign out</a>
+                        <a href="../login/deslogar.php">
                             <i class="js-arrow" class="fas fa-sign-in-alt"></i>sair</a>
+
 
                     </div>
                     <nav class="navbar-sidebar2">

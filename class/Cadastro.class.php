@@ -238,17 +238,19 @@ class Cadastro {
         
     }
     function loginadm($log){
+        
+        //var_dump($log); die;
         $conecta;
          //var_dump("aaaa", $cadastro);
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql="SELECT*FROM cadastro WHERE email='lucas.thomaz.05.09.@gmail.com' and senha=:senha";
+            $sql="SELECT*FROM cadastro WHERE email=:email and senha=:senha";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":senha", $log->getSenha());
+            $prepara->bindValue(":email", $log->getEmail());
              $prepara->execute();
             $b = $prepara->fetch(PDO::FETCH_ASSOC);
-            
    
             return $b;
             
