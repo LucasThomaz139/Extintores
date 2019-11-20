@@ -16,6 +16,7 @@ if ($retorno) {
 }
 else{
     echo"a senha esta errada ou email errado";
+      header("location:../login/logar.php");
 }
 
 

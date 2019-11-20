@@ -12,12 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/extintores/login/logar.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/class/controage.class.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/class/Produtos.class.php</file>
             <file>file:/C:/xampp/htdocs/extintores/class/Cadastro.class.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/login/deslogar.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/administrador/topo.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/login/logarok.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/administrador/index.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/topo.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/index.php</file>
         </group>
     </open-files>
 </project-private>

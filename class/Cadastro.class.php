@@ -151,6 +151,51 @@ class Cadastro {
             }
         }
     }
+     function enviar_email($en) {
+          $conecta;
+        try {
+        $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
+    
+            $conecta->beginTransaction();
+           $sql = "SELECT*FROM cadastro WHERE idusuario=:idusuario";
+            $preparedStatment = $conecta->prepare($sql);
+            $preparedStatment->bindValue(":idusuario", $en->getIdusuario());
+            $preparedStatment->bindValue(":email", $en->getEmail());
+            $preparedStatment->bindValue(":senha", $en->getSenha());
+           
+            $preparedStatment->execute();
+             $conecta->commit();
+              
+            
+                        $mail = new PHPMailer();
+                        $mail->isSMTP();
+                        $mail->Host = "smtp.gmail.com";
+                        $mail->SMTPAuth = true;
+                        $mail->Username = "aulaifsul@gmail.com";
+                        $mail->Password = "123456aula";
+                        $mail->SMTPSecure = "tls";
+                        $mail->Port = 587;
+                        $mail->From = "aulaifsul@gmail.com";
+                        $mail->FromName = "Aula Ifsul";
+                        $mail->addAddress('$en->getEmail()');
+                        $mail->isHTML(false);
+                        $mail->Subject = "thomaz";
+                        $mail->Body = " A sua senha é ". $en->getSenha().".";
+                         
+            
+        return $mail->send();
+            } catch (PDOException $exc) {
+            if ((isset($conecta)) && ($conecta->inTransaction())) {
+                $conecta->rollBack();
+            }
+            echo $exc->getMessage();
+            
+        } finally {
+            if (isset($conecta)) {
+                unset($conecta);
+            }
+        }
+    }
 
     function lista($cadastro) {
         $conecta;
