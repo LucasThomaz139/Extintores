@@ -9,7 +9,7 @@
         <label>Senha</label>
         <input type="password" name="senha"/><br>
         <input type="submit" value="entrar">
-        <a href="../login/email.php">esqueceu a senha? </a>
+        
     </form>
     
 </body>

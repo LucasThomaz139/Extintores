@@ -74,12 +74,12 @@ class Agendamento {
         }
     }
         
-    function lista() {
+    function lista($complemento="") {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT agendamento.*,cadastro.nome as cadastro_idusuario FROM agendamento INNER JOIN cadastro ON agendamento.cadastro_idusuario=cadastro.idusuario ";
+            $sql ="SELECT agendamento.*,cadastro.nome as cadastro_idusuario FROM agendamento INNER JOIN cadastro ON agendamento.cadastro_idusuario=cadastro.idusuario ".$complemento;
             $prepara = $conecta->prepare($sql);
 
             $b = $prepara->execute();

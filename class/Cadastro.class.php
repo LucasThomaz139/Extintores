@@ -1,5 +1,8 @@
 <?php
 
+include_once 'PHPMailer/class.SMTP.php';
+include_once 'PHPMailer/class.PHPMailer.php';
+
 
 class Cadastro {
 
@@ -157,33 +160,39 @@ class Cadastro {
         $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
     
             $conecta->beginTransaction();
-           $sql = "SELECT*FROM cadastro WHERE idusuario=:idusuario";
+            $sql = "SELECT * FROM cadastro WHERE email=:email";
             $preparedStatment = $conecta->prepare($sql);
-            $preparedStatment->bindValue(":idusuario", $en->getIdusuario());
-            $preparedStatment->bindValue(":email", $en->getEmail());
-            $preparedStatment->bindValue(":senha", $en->getSenha());
-           
-            $preparedStatment->execute();
-             $conecta->commit();
-              
+            $preparedStatment->bindValue(":email", $en->getEmail());         
+            $compacto = $preparedStatment->execute();
+            $conecta->commit();
             
-                        $mail = new PHPMailer();
-                        $mail->isSMTP();
-                        $mail->Host = "smtp.gmail.com";
-                        $mail->SMTPAuth = true;
-                        $mail->Username = "aulaifsul@gmail.com";
-                        $mail->Password = "123456aula";
-                        $mail->SMTPSecure = "tls";
-                        $mail->Port = 587;
-                        $mail->From = "aulaifsul@gmail.com";
-                        $mail->FromName = "Aula Ifsul";
-                        $mail->addAddress('$en->getEmail()');
-                        $mail->isHTML(false);
-                        $mail->Subject = "thomaz";
-                        $mail->Body = " A sua senha é ". $en->getSenha().".";
-                         
+            if($compacto){
+                $pegando = $preparedStatment->fetchAll();
+                
+                foreach($pegando as $colocando){           
+                    $mail = new PHPMailer();
+                    $mail->isSMTP();
+                    $mail->Host = "smtp.gmail.com";
+                    $mail->SMTPAuth = true;
+                    $mail->Username = "aulaifsul@gmail.com";
+                    $mail->Password = "123456aula";
+                    $mail->SMTPSecure = "tls";
+                    $mail->Port = 587;
+                    $mail->From = "aulaifsul@gmail.com";
+                    $mail->FromName = "Aula Ifsul";
+                    $mail->addAddress($colocando['email']);
+                    $mail->isHTML(false);
+                    $mail->Subject = "thomaz";
+                    $mail->Body = " A sua senha é ". $colocando["senha"].".";
+                    $resultadoenvio = $mail->send();
+                    
+                    return $resultadoenvio;
+                }
+            } else{
+                
+            }
             
-        return $mail->send();
+            
             } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();
