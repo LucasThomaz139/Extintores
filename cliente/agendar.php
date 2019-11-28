@@ -4,7 +4,7 @@ include_once '../cliente/topo.php';
 include_once '../class/Agendamento.class.php';
 include_once '../class/Cadastro.class.php';
 $listado=new Agendamento();
-$cliente=$_SESSION['idusuario'];
+$cliente=$listado[$_SESSION['idusuario']];
 $liscadastro=$listado->lista("WHERE agendamento.cadastro_idusuario=$cliente");
 ?>
 <html>
@@ -19,7 +19,10 @@ $liscadastro=$listado->lista("WHERE agendamento.cadastro_idusuario=$cliente");
            <select>
                <option>selecione</option>
             <?php
-                            echo "<option value='{$linha->getIdusuario()}'>".$linha->getNome()."</option>";
+            
+                        
+                            echo "<option value='{$cliente[':idusuario']}'>".$cliente[':nome']."</option>";
+                        
             ?>
                 
                         </select><br>

@@ -5,16 +5,17 @@ $agencia=new Agendamento();
 $ros=$agencia->lista();
 
 ?>
-<body>
-    <div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
-    <table border="1">
-        <thead>
-           <tr>
-               <th>código</th>
+<body> <th>código</th>
                 <th>nome</th>
                 <th>data</th>
                 <th>descricao</th>
                 <th>hora</th>
+                <th>Quantidade</th>
+    <div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
+    <table border="1">
+        <thead>
+           <tr>
+              
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@ $ros=$agencia->lista();
             echo "<td>".$agencia['data']."</td>";
             echo "<td>".$agencia['descricao']."</td>";
             echo "<td>".$agencia['hora']."</td>";
+            echo "<td>".$agencia['quantidade']."</td>";
             echo"<td><a href='../agendamento/editar.php?idagendamento=" . $agencia ['idagendamento']. "'>editar</a></td>";
             echo"<td><a href='../agendamento/excluir.php?idagendamento=" . $agencia ['idagendamento']. "'>excluir</a></td></tr>";
             echo "</tr>";

@@ -7,6 +7,7 @@ class Agendamento {
     private $data;
     private $descricao;
     private $hora;
+    private $quantidade;
     function getIdagendamento() {
         return $this->idagendamento;
     }
@@ -26,7 +27,11 @@ class Agendamento {
     function getHora() {
         return $this->hora;
     }
+    function getQuantidade() {
+        return $this->quantidade;
+    }
 
+    
     function setIdagendamento($idagendamento) {
         $this->idagendamento = $idagendamento;
     }
@@ -46,18 +51,24 @@ class Agendamento {
     function setHora($hora) {
         $this->hora = $hora;
     }
-    function adicionar($agenda) {
+    
+    function setQuantidade($quantidade) {
+        $this->quantidade = $quantidade;
+    }
+
+        function adicionar($agenda) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "INSERT INTO agendamento(cadastro_idusuario,data,descricao,hora) VALUES(:cadastro_idusuario,:data,:descricao,:hora)";
+            $sql = "INSERT INTO agendamento(cadastro_idusuario,data,descricao,hora,quantidade) VALUES(:cadastro_idusuario,:data,:descricao,:hora, :quantidade)";
             //print_r($sql);
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":cadastro_idusuario", $agenda->getCadastro_idusuario());
             $prepara->bindValue(":data", $agenda->getData());
             $prepara->bindValue(":descricao", $agenda->getDescricao());
             $prepara->bindValue(":hora", $agenda->getHora());
+            $prepara->bindValue(":quantidade", $agenda->getQuantidade());
             $prepara->execute();
             $conecta->commit();
            
@@ -154,7 +165,7 @@ class Agendamento {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE agendamento SET  cadastro_idusuario=:cadastro_idusuario,data=:data,descricao=:descricao,hora=:hora WHERE idagendamento =:idagendamento";
+            $sql = "UPDATE agendamento SET  cadastro_idusuario=:cadastro_idusuario,data=:data,descricao=:descricao,hora=:hora, quantidade=:quantidade  WHERE idagendamento =:idagendamento";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
               $prepara->bindValue(":idagendamento", $agenda->getIdagendamento());
@@ -162,6 +173,8 @@ class Agendamento {
             $prepara->bindValue(":data", $agenda->getData());
             $prepara->bindValue(":descricao", $agenda->getDescricao());
             $prepara->bindValue(":hora", $agenda->getHora());
+            $prepara->bindValue(":quantidade", $agenda->getQuantidade());
+            
             
             $prepara->execute();
              $conecta->commit();

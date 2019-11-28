@@ -3,17 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/extintores/cliente/servico.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/login/email.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/ediusuok.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/email.php</file>
             <file>file:/C:/xampp/htdocs/extintores/cliente/usuariook.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/cliente/agendar.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/cliente/agendarok.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cadastro/listar.php</file>
             <file>file:/C:/xampp/htdocs/extintores/class/Cadastro.class.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/cliente/ecomenda2.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/buscaok.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/recuperar.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/deslogarusu.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/lisusu.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/ediusu.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/emailok.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/reservar.php</file>
             <file>file:/C:/xampp/htdocs/extintores/cliente/usuario.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/agendamento/adicionarok.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/topo.php</file>
+            <file>file:/C:/xampp/htdocs/extintores/cliente/resenha.php</file>
             <file>file:/C:/xampp/htdocs/extintores/class/Agendamento.class.php</file>
-            <file>file:/C:/xampp/htdocs/extintores/cliente/ecomenda.php</file>
         </group>
     </open-files>
 </project-private>

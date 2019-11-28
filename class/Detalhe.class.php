@@ -3,6 +3,7 @@
 
 class Detalhe {
     private $iddetalhe;
+    private $usuario;
     private $produtos_idprodutos;
     private $servico_idservico;
     private $agendamento_idagendamento ;
@@ -12,7 +13,11 @@ class Detalhe {
     function getIddetalhe() {
         return $this->iddetalhe;
     }
+    function getUsuario() {
+        return $this->usuario;
+    }
 
+    
     function getProdutos_idprodutos() {
         return $this->produtos_idprodutos;
     }
@@ -39,7 +44,11 @@ class Detalhe {
     function setIddetalhe($iddetalhe) {
         $this->iddetalhe = $iddetalhe;
     }
+    function setUsuario($usuario) {
+        $this->usuario = $usuario;
+    }
 
+    
     function setProdutos_idprodutos($produtos_idprodutos) {
         $this->produtos_idprodutos = $produtos_idprodutos;
     }
@@ -68,9 +77,10 @@ class Detalhe {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "INSERT INTO detalhe(produtos_idprodutos,servico_idservico,agendamento_idagendamento,quantidade,detalhe,valor) VALUES(:produtos_idprodutos,:servico_idservico,:agendamento_idagendamento,:quantidade,:detalhe,:valor)";
+            $sql = "INSERT INTO detalhe(usuario,produtos_idprodutos,servico_idservico,agendamento_idagendamento,quantidade,detalhe,valor) VALUES(:usuario,:produtos_idprodutos,:servico_idservico,:agendamento_idagendamento,:quantidade,:detalhe,:valor)";
             //print_r($sql);
             $prepara =$conecta->prepare($sql);
+            $prepara->bindValue(":usuario", $detalhe->getUsuario());
             $prepara->bindValue(":produtos_idprodutos", $detalhe->getProdutos_idprodutos());
             $prepara->bindValue(":servico_idservico", $detalhe->getServico_idservico());
             $prepara->bindValue(":agendamento_idagendamento", $detalhe->getAgendamento_idagendamento());
@@ -99,9 +109,10 @@ class Detalhe {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT detalhe.*,produtos.nome as produtos_idprodutos,servico.nome as servico_idservico,agendamento.data as agendamento_idagendamento FROM detalhe INNER JOIN produtos ON detalhe.produtos_idprodutos=produtos.idprodutos INNER JOIN servico ON detalhe.servico_idservico=servico.idservico INNER JOIN agendamento ON detalhe.agendamento_idagendamento=agendamento.idagendamento";
+            $sql ="SELECT detalhe.*,cadastro.nome as usuario, produtos.nome as produtos_idprodutos,servico.nome as servico_idservico FROM detalhe INNER JOIN cadastro ON detalhe.usuario=cadastro.idusuario INNER JOIN produtos ON detalhe.produtos_idprodutos=produtos.idprodutos INNER JOIN servico ON detalhe.servico_idservico=servico.idservico INNER JOIN agendamento ON detalhe.agendamento_idagendamento=agendamento.idagendamento";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":iddetalhe", $detalhe->getIddetalhe());
+            $prepara->bindValue(":usuario", $detalhe->getUsuario());
             $prepara->bindValue(":produtos_idprodutos", $detalhe->getProdutos_idprodutos());
             $prepara->bindValue(":servico_idservico", $detalhe->getServico_idservico());
             $prepara->bindValue(":agendamento_idagendamento", $detalhe->getAgendamento_idagendamento());
@@ -133,7 +144,7 @@ class Detalhe {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "SELECT detalhe.*,produtos.nome as produtos_idprodutos,servico.nome as servico_idservico,agendamento.data as agendamento_idagendamento FROM detalhe INNER JOIN produtos ON detalhe.produtos_idprodutos=produtos.idprodutos INNER JOIN servico ON detalhe.servico_idservico=servico.idservico INNER JOIN agendamento ON detalhe.agendamento_idagendamento=agendamento.idagendamento WHERE iddetalhe=:iddetalhe";
+            $sql = "SELECT detalhe.*,cadastro.nome as usuario, produtos.nome as produtos_idprodutos,servico.nome as servico_idservico FROM detalhe  INNER JOIN cadastro ON detalhe.usuario=cadastro.idusuario INNER JOIN produtos ON detalhe.produtos_idprodutos=produtos.idprodutos INNER JOIN servico ON detalhe.servico_idservico=servico.idservico INNER JOIN agendamento ON detalhe.agendamento_idagendamento=agendamento.idagendamento WHERE iddetalhe=:iddetalhe";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":iddetalhe", $detalhe->getIddetalhe());
            $prepara->execute();

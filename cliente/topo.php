@@ -50,7 +50,8 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> Rua dos Andradas</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-user-o"></i> login</a></li>
+                                            <li><a href="email.php"><i class="fa fa-user-o"></i> login</a></li>
+                                            <li><a href="deslogarusu.php"><i class="fa fa-user-o"></i>sair </a></li>
 					</ul>
 				</div>
 			</div>
@@ -73,9 +74,9 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
+                                                            <form method="GET" action="buscaok.php">
 									
-									<input class="input" placeholder="pesquisa aqui">
+									<input class="input" type="text" name="cnpjt" placeholder="pesquisa aqui seu cnpjt">
 									<button class="search-btn">pesquisa</button>
 								</form>
 							</div>
@@ -89,9 +90,9 @@
 
 								<!-- Cart -->
 								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									<a  href="../cliente/carrinho.php" >
 										<i class="fa fa-shopping-cart"></i>
-										<span>ecomenda</span>
+										<p>reserva</p>
 										
 									</a>
 									
@@ -126,12 +127,12 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">minha ecomenda</a></li>
-						<li><a href="#">produtos</a></li>
-						<li><a href="#">agendar</a></li>
-						<li><a href="#">cadastrar</a></li>
-						<li><a href="#">serviço</a></li>
-						<li><a href="#">acessórios</a></li>
+						<li><a href="index.php">produtos</a></li>
+                                                <li><a href="agendar.php">agendar</a></li>
+                                                <li><a href="usuario.php">cadastrar</a></li>
+                                                <li><a href="servico.php">serviço</a></li>
+                                                <li><a href="informacao.php">empresa</a></li>
+						
 					</ul>
 					<!-- /NAV -->
 				</div>

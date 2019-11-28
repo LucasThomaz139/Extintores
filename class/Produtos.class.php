@@ -113,8 +113,37 @@ function adicionar($produtos) {
             $conecta->beginTransaction();
             $sql ="SELECT*FROM produtos ";
             $prepara = $conecta->prepare($sql);
-            
+           
             $b = $prepara->execute();
+            $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
+//            $conecta->commit();
+
+           // var_dump($pegando);
+            return $pegando;
+        } catch (PDOException $exc) {
+            if ((isset($conecta)) && ($conecta->inTransaction())) {
+                $conecta->rollBack();
+            }
+            PRINT($exc->getMessage());
+            return FALSE;
+        } finally {
+            if (isset($conecta)) {
+                unset($conecta);
+            }
+        }
+    }
+    function listar($pro) {
+       
+        $conecta;
+        try {
+            $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
+            $conecta->beginTransaction();
+            $sql ="SELECT*FROM produtos WHERE idprodutos = :idprodutos ";
+            $prepara = $conecta->prepare($sql);
+             $prepara->bindValue(":idprodutos",$pro->getIdprodutos());
+            $b = $prepara->execute();
+            
+           //var_dump("e ai",$b);
             $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
 //            $conecta->commit();
 

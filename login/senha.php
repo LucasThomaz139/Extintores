@@ -1,9 +1,6 @@
 <?php
 
 ?>
-<?php
-
-?>
 <body>
     <form method="POST" action="email.php">
 

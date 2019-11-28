@@ -70,45 +70,52 @@ if(!isset($_SESSION['administrador']) && !isset($_SESSION['login']))
                             </li>
                             <li id="sim">
 
-                                <a  class="js-arrow" href="../detalhe/adicionar.php">adicionar detalhe</a>
+                                <a  class="js-arrow" href="../detalhe/adicionar.php">Adicionar detalhe</a>
                             </li>
 
                             <li id="sim">
-                                <a class="js-arrow" href="../produto/listar.php">produtos</a>
+                                <a class="js-arrow" href="../produto/listar.php">Produtos</a>
 
                             </li>
                             <li id="sim">
 
-                                <a class="js-arrow" href="../produto/adicionar.php">adicionar produtos</a>
+                                <a class="js-arrow" href="../produto/adicionar.php">Adicionar produtos</a>
                             </li> 
 
 
                             <li class="has-sub">
-                                <a class="js-arrow" href="../cadastro/listar.php">cadastros</a>
+                                <a class="js-arrow" href="../cadastro/listar.php">Cadastros</a>
                             </li>
                             <li class="has-sub">
-                                <a class="js-arrow" href="../cadastro/adicionar.php"> adicionar usuarios</a>
+                                <a class="js-arrow" href="../cadastro/adicionar.php"> Adicionar usuarios</a>
 
 
                             <li class="has-sub">
-                                <a class="js-arrow" href="../servico/listar.php"> serviços</a>
+                                <a class="js-arrow" href="../servico/listar.php"> Serviços</a>
 
                             </li> <li class="has-sub">
-                                <a class="js-arrow" href="../servico/adicionar.php"> adicionar serviços</a>
+                                <a class="js-arrow" href="../servico/adicionar.php"> Adicionar serviços</a>
 
 
                             <li class="has-sub">
-                                <a class="js-arrow" href="../agendamento/lista.php">agendamento</a>
+                                <a class="js-arrow" href="../agendamento/lista.php">Agendamento</a>
 
                             </li> 
                             <li class="has-sub">
-                                <a class="js-arrow" href="../agendamento/adicionar.php"> adicionar agendamento</a>
+                                <a class="js-arrow" href="../agendamento/adicionar.php"> Adicionar agendamento</a>
                             </li>
                             <li class="has-sub">
-                                <a class="js-arrow" href="../mensagem/listar.php"> mensagem</a>
+                                <a class="js-arrow" href="../mensagem/listar.php"> Mensagem</a>
                             </li>
                             <li class="has-sub">
-                                <a class="js-arrow" href="../mensagem/adicionar.php"> adicionar mensagem</a>
+                                <a class="js-arrow" href="../mensagem/adicionar.php"> Adicionar mensagem</a>
+                            </li>
+                            <li class="has-sub">
+                                <a class="js-arrow" href="../empresa/listar.php"> Informação da empresa</a>
+                            
+                            </li>
+                             <li class="has-sub">
+                                <a class="js-arrow" href="../empresa/adicionar.php"> Adicionar empresa</a>
                             </li>
                         </ul>
                     </nav>

@@ -8,6 +8,7 @@ $agencia->setCadastro_idusuario($_GET['cadastro_idusuario']);
 $agencia->setData($_GET['data']);
 $agencia->setDescricao($_GET['descricao']);
 $agencia->setHora($_GET['hora']);
+$agencia->setQuantidade($_GET['quantidade']);
 $agencia->adicionar($agencia);
 
 include_once '../administrador/rodape.php';

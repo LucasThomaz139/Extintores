@@ -1,74 +1,32 @@
 <?php
 
-class controage {
-
+class Empresa {
     private $id;
-    private $agendamento;
-    private $servico;
-    private $pagamento;
-    private $cartao;
-    private $quantidade;
-    
+    private $informacao;
     function getId() {
         return $this->id;
     }
 
-    function getAgendamento() {
-        return $this->agendamento;
+    function getInformacao() {
+        return $this->informacao;
     }
-
-    function getServico() {
-        return $this->servico;
-    }
-
-    function getPagamento() {
-        return $this->pagamento;
-    }
-    
-    function getCartao() {
-        return $this->cartao;
-    }
-
-        function getQuantidade() {
-        return $this->quantidade;
-    }
-
-        function setId($id) {
+    function setId($id) {
         $this->id = $id;
     }
 
-    function setAgendamento($agendamento) {
-        $this->agendamento = $agendamento;
-    }
-
-    function setServico($servico) {
-        $this->servico = $servico;
-    }
-
-    function setPagamento($pagamento) {
-        $this->pagamento = $pagamento;
+    function setInformacao($informacao) {
+        $this->informacao = $informacao;
     }
     
-    function setCartao($cartao) {
-        $this->cartao = $cartao;
-    }
-
-        function setQuantidade($quantidade) {
-        $this->quantidade = $quantidade;
-    }
-
-    function adicionar($age) {
+    function adicionar($emp) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "INSERT INTO controage(agendameto,servico,pagamento,cartao,quantidade) VALUES(:agendamento,:servico,:pagamento,:cartao, :quantidade)";
+            $sql = "INSERT INTO empresa(informacao) VALUES(:informacao)";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":agendamento", $age->getAgendamento());
-            $prepara->bindValue(":servico", $age->getServico());
-            $prepara->bindValue(":pagamento", $age->getPagamento());
-            $prepara->bindValue(":cartao", $age->getCartao());
-            $prepara->bindValue(":quantidade", $age->getQuantidade());
+            $prepara->bindValue(":informacao", $emp->getInformacao());
+            
             $prepara->execute();
             $conecta->commit();
         } catch (PDOException $exc) {
@@ -89,7 +47,7 @@ class controage {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT controage.*,agendamento.data as agendamento, servico.nome as servico FROM controage INNER JOIN agendamento ON controage.agendamento=agendamento.idagendamento INNER JOIN servico ON controage.servico=servico.idservico ";
+            $sql ="SELECT*FROM empresa";
             $prepara = $conecta->prepare($sql);
               $pego = $prepara->execute();
             $pegando = $prepara->fetchAll(PDO::FETCH_ASSOC);
@@ -107,15 +65,15 @@ class controage {
             }
         }
     }
-     function verificador($age){
+     function verificador($ver){
         
          $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-             $sql ="SELECT controage.*,agendamento.data as agendamento, servico.nome as servico FROM controage INNER JOIN agendamento ON controage.agendamento=agendamento.idagendamento INNER JOIN servico ON controage.servico=servico.idservico WHERE id=:id ";
+             $sql ="SELECT*FROM empresa WHERE id=:id ";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":id",$age->getId());
+            $prepara->bindValue(":id",$ver->getId());
             $prepara->execute();
             $b = $prepara->fetch(PDO::FETCH_ASSOC);
             //var_dump($b);
@@ -138,16 +96,12 @@ class controage {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE controage SET  agendamento= :agendamento,servico= :servico, pagamento= :pagamento, cartao=:cartao, quantidade=:quantidade WHERE id =:id";
+            $sql = "UPDATE empresa SET  informacao= :informacao WHERE id =:id";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
            $prepara->bindValue(":id", $salva->getId());
-           $prepara->bindValue(":agendamento", $salva->getAgendamento());
-           $prepara->bindValue(":servico", $salva->getServico());
-           $prepara->bindValue(":pagamento",$salva->getPagamento());
-           $prepara->bindValue(":Cartao",$salva->getCartao());
-           $prepara->bindValue(":quantidade",$salva->getQuantidade());
-            $prepara->execute();
+           $prepara->bindValue(":informacao", $salva->getInformacao());
+           $prepara->execute();
              $conecta->commit();
             
         } catch (PDOException $exc) {
@@ -169,9 +123,9 @@ class controage {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="DELETE FROM controage WHERE id= :id";
+            $sql ="DELETE FROM empresa WHERE id= :id";
             $prepara=$conecta->prepare($sql);
-            $prepara->bindValue(":idservico",$se->getIdservico());
+            $prepara->bindValue(":id",$se->getId());
             $b=$prepara->execute();
             $conecta->commit();
             
@@ -190,5 +144,3 @@ class controage {
 
 
 }
-
-

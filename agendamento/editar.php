@@ -26,6 +26,7 @@
    Data: <input style="border: 1px solid black; display:block" type="date" name="data" value="<?php echo $novo['data']?>"/>
     descrição:<input style="border: 1px solid black; display:block" type="text" name="descricao" value="<?php echo $novo['descricao']?>"/>
     Hora:<input style="border: 1px solid black; display:block" type="text" name="hora" value="<?php echo $novo['hora']?>"/>
+    Quantidade:<input style="border: 1px solid black; display:block" type="number" name="quantidade" value="<?php echo $novo['quantidade']?>"/>
     <input style="border: 1px solid black;" type="hidden" name="idagendamento" value="<?php echo $novo['idagendamento'];?>"/>
     <input style="border: 1px solid black;"  type="submit"/>
     

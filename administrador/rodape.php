@@ -8,41 +8,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap2">
                             
-                            <div class="header-button2">
-                                
-                               
-                                <div class="header-button-item mr-0 js-sidebar-btn">
-                                    <i class="zmdi zmdi-menu"></i>
-                                </div>
-                                <div class="setting-menu js-right-sidebar d-none d-lg-block">
-                                    <div class="account-dropdown__body">
-                                        <div class="account-dropdown__item">
-                                           <!-- <a href="#">
-                                                <i class="zmdi zmdi-account"></i>sai</a>-->
-												<a href="login.html">
-								<i class="fas fa-sign-in-alt"></i>sair</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-settings"></i>Configuração</a>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="account-dropdown__body">
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-pin"></i>Localização</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-email"></i>Email</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-notifications"></i>Notifications</a>
-                                        </div>
-                                    </div>
-                                </div>
+                            
                             </div>
                         </div>
                     </div>

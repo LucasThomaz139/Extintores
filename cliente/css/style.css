@@ -60,6 +60,12 @@ body {
   font-weight: 400;
   color: #333;
 }
+#informacao{
+    margin-left: 10%;
+    margin-top: 10%;
+    margin-right: 10%;
+    text-align: justify;
+}
 
 h1, h2, h3, h4, h5, h6 {
   color: #2B2D42;
@@ -1092,7 +1098,7 @@ textarea.input {
 .product-widget .product-img {
   position: absolute;
   left: 0px;
-  top: 0px;
+  top: 110px;
   width: 60px;
 }
 
