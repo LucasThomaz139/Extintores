@@ -144,7 +144,7 @@ class Servico {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="DELETE FROM servico WHERE idservico= :idservico";
+            $sql ="DELETE FROM servico WHERE idservico = :idservico";
             $prepara=$conecta->prepare($sql);
             $prepara->bindValue(":idservico",$se->getIdservico());
             $b=$prepara->execute();

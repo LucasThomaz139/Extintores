@@ -16,10 +16,11 @@ $cadastro->setSenha(md5($_GET['senha']));
 $resultado=$cadastro->veri_adicionar($cadastro);
 
 if($resultado){
-    header("location: ../cliente/email.php");
-} else {
     $resultado=$cadastro->adicionar($cadastro);
-    header("location:../cliente/usuario.php");   
+    header("location:../cliente/usuario.php"); 
+    
+} else {
+    header("location: ../cliente/email.php");  
 }
 
 include_once '../cliente/rodape.php';

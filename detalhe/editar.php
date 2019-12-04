@@ -49,7 +49,6 @@ $bom=$age->lista();
                                 }
                             ?>
                         </select><br>
-                        quantidade<input style="border: 1px solid black; display:block" type="number" name="quantidade" value="<?php echo $den['quantidade']?>"/>
                         detalhe<input style="border: 1px solid black; display:block" type="text" name="detalhe" value="<?php echo $den['detalhe']?>"/>
                         valor<input style="border: 1px solid black; display:block" type="number" name="valor" value="<?php echo $den['valor']?>"/>
                         <input style="border: 1px solid black" type="hidden" name="iddetalhe" value="<?php echo $den['iddetalhe'];?>"/>

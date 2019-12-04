@@ -2,7 +2,7 @@
 include_once '../administrador/topo.php';
 include_once '../class/Cadastro.class.php';
 $listando=new Cadastro();
-$resultado = $listando->lista($listando);
+$resultado = $listando->listas();
 ?>
 <div  width='-50px' heigth='999px' style='margin-left: 310px;margin-right: 900px; margin-top: 10%;'>
 <table   border="1">
@@ -15,7 +15,6 @@ $resultado = $listando->lista($listando);
         <th>cnpjt</th>
         <th>Endereço</th>
         <th>Email</th>
-        <th>Senha</th>
     </tr>
     
     <tbody>
@@ -29,7 +28,6 @@ $resultado = $listando->lista($listando);
             echo"<td>".$linha->getCnpjt(':cnpjt')."</td>";
             echo"<td>".$linha->getEndereco(':endereco')."</td>";
             echo"<td>".$linha->getEmail(':email')."</td>";
-            echo"<td>".$linha->getSenha(':senha')."</td>";
             echo"<td><a href='../cadastro/editar.php?idusuario=".$linha->getIdusuario(':Idusuario')."'>editar</a></td>";
             echo"<td><a href='../cadastro/excluir.php?idusuario=".$linha->getIdusuario(':Idusuario')."'>excluir</a></td></tr>";
            

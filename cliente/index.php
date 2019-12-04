@@ -5,11 +5,13 @@ $linha = new Produtos();
 $retorno= $linha->listas("LIMIT 8");
 
 ?>
-	
+
 <div class="col-md-12">
 						<div class="row">
 							<div class="products-tabs">
 								<!-- tab -->
+                                                                <div   style=' margin-top: 10%;margin-bottom: 10%;'>
+                                                                <a href="reservar.php?idprodutos=<?php$retorno['idprodutos']?>"><button type="submit" href="reservar.php?idprodutos=<?php $retorno['idprodutos']?>" >reservar produtos</button></a>
 								<div id="tab2" class="tab-pane fade in active">
 									<div class="products-slick" data-nav="#slick-nav-2">
 									 <?php
@@ -20,8 +22,9 @@ $retorno= $linha->listas("LIMIT 8");
                                                                             
                                                                             <!-- product -->
 										<div class="product">
-											<div class="product-img">
-												<img src="../imagem/<?php echo $linha['imagem'];?>" alt="">
+                                                                                    
+											<div class="product-img" >
+                                                                                            <img width="150px" height="250px" src="../imagem/<?php echo $linha['imagem'];?>" alt="">
 												
 											</div>
 											<div class="product-body">
@@ -33,7 +36,7 @@ $retorno= $linha->listas("LIMIT 8");
 											</div>
                                                                                     	<div class="add-to-cart">
                                                                                            
-                                                                                            <a href="descre.php?idprodutos=<?php echo $linha['idprodutos']?>"><button type="submit" href="descre.php?idprodutos=<?php $linha['idprodutos']?>" >reservar</button></a>
+                                                                                            
                                                                                             <a href="descre.php?idprodutos=<?php echo $linha['idprodutos']?>"><button type="submit" href="descre.php?idprodutos=<?php $linha['idprodutos']?>" >detalhe</button></a>
 											</div>
 										</div>
@@ -50,12 +53,7 @@ $retorno= $linha->listas("LIMIT 8");
 					<!-- /Products tab & slick -->
 				</div>
 				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-		<!-- /SECTION -->
-
-
+		
 		
 <?php
 include_once 'rodape.php';

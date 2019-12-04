@@ -3,9 +3,11 @@ session_start();
 include_once '../cliente/topo.php';
 include_once '../class/Agendamento.class.php';
 include_once '../class/Cadastro.class.php';
-$listado=new Agendamento();
-$cliente=$listado[$_SESSION['idusuario']];
-$liscadastro=$listado->lista("WHERE agendamento.cadastro_idusuario=$cliente");
+$listado=new Cadastro();
+$cliente=$_SESSION['idusuario'];
+//var_dump($cliente);
+$liscadastro=$listado->lista($cliente);
+//var_dump($liscadastro);
 ?>
 <html>
     <head>
@@ -20,9 +22,10 @@ $liscadastro=$listado->lista("WHERE agendamento.cadastro_idusuario=$cliente");
                <option>selecione</option>
             <?php
             
+                                    foreach($liscadastro as $b){
                         
-                            echo "<option value='{$cliente[':idusuario']}'>".$cliente[':nome']."</option>";
-                        
+                            echo "<option value='" .$b->getIdusuario()."'>".$b->getNome()."</option>";
+                                    }
             ?>
                 
                         </select><br>

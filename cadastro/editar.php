@@ -15,7 +15,6 @@ $retorno=$cadastrando->verificador($cadastrando);
     telefone pessoal:<input style="border: 1px solid black; display:block" type="text" name="cnpjt" value="<?php echo $retorno->getCnpjt()?>">
     endereço:<input style="border: 1px solid black; display:block" type="text" name="endereco" value="<?php echo $retorno->getEndereco()?>">
     email:<input style="border: 1px solid black; display:block" type="email" name="email" value="<?php echo $retorno->getEmail()?>">
-    Senha:<input style="border: 1px solid black; display:block" type="password" name="senha" value="<?php echo $retorno->getSenha()?>">
     <input style="border: 1px solid black; display:block" type="hidden" name="idusuario" value="<?php echo $retorno->getIdusuario()?>"/>
     <input style="border: 1px solid black; display:block" type="submit"/>
  </form>

@@ -2,17 +2,16 @@
 include_once '../administrador/topo.php';
 include_once '../class/Detalhe.class.php';
 $de= new Detalhe();
-$den=$de->lista($de);
+$den=$de->lista();
 //var_dump($den);
 ?>
-<div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
+<div  width='600px' style='margin-left: 25%;margin-right:10%;  margin-top: 10%; display:block'>
 <table border="1">
    <thead> <tr>
         <th>Código</th>
         <th>Produto</th>
         <th>Serviço</th>
         <th>agendamento</th>
-        <th>Quantidade</th>
         <th>Detalhe</th>
         <th>Valor</th>
         
@@ -25,7 +24,6 @@ $den=$de->lista($de);
             echo"<td>".$de['produtos_idprodutos']."</td>";
             echo"<td>".$de['servico_idservico']."</td>";
             echo"<td>".$de['agendamento_idagendamento']."</td>";
-            echo"<td>".$de['quantidade']."</td>";
             echo"<td>".$de['detalhe']."</td>";
             echo"<td>".$de['valor']."</td>";
             echo"<td><a href='../detalhe/editar.php?iddetalhe=".$de['iddetalhe']."'>editar</a></td>";

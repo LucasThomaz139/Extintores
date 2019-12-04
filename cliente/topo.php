@@ -74,7 +74,7 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-                                                            <form method="GET" action="buscaok.php">
+                                                            <form method="POST" action="buscaok.php">
 									
 									<input class="input" type="text" name="cnpjt" placeholder="pesquisa aqui seu cnpjt">
 									<button class="search-btn">pesquisa</button>
@@ -89,14 +89,7 @@
 								
 
 								<!-- Cart -->
-								<div class="dropdown">
-									<a  href="../cliente/carrinho.php" >
-										<i class="fa fa-shopping-cart"></i>
-										<p>reserva</p>
-										
-									</a>
-									
-								</div>
+								
 								<!-- /Cart -->
 
 								<!-- Menu Toogle -->

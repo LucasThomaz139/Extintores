@@ -1,5 +1,5 @@
 <?php
-include_once '../administrador/topo.php';
+include_once '../cliente/topo.php';
 include_once'../class/Cadastro.class.php';
 $cadastrando=new Cadastro();
 $cadastrando->setIdusuario($_GET['idusuario']);
@@ -16,6 +16,6 @@ $retorno=$cadastrando->verificador($cadastrando);
  </form>
  </div>
 <?php
-include_once '../administrador/rodape.php';
+include_once '../cliente/rodape.php';
 
 

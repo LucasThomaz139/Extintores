@@ -12,8 +12,8 @@ $noss=$emp->lista();
             <?php
             foreach ($noss as $emp) {
                 echo "<tr><td>".$emp['informacao']."</td>";
-                echo"<td><a href='../servico/editar.php?id=".$emp['id']."'>editar</a></td>";
-            echo"<td><a href='../servico/excluir.php?id=".$emp['id']."'>excluir</a></td></tr>";
+                echo"<td><a href='../empresa/editar.php?id=".$emp['id']."'>editar</a></td>";
+            echo"<td><a href='../empresa/excluir.php?id=".$emp['id']."'>excluir</a></td></tr>";
             }
             ?>
                

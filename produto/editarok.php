@@ -11,8 +11,13 @@ $pro->setTipo($_POST['tipo']);
 $pro->setDescricao($_POST['descrisao']);
 $pro->setQuantidade($_POST['quantidade']);
 $pro->setStatus($_POST['status']);
+$nome=$_FILES["i"]["name"];
+//$nometemporario=$_FILES["i"]["tmp_name"];
+//$destino="../imagem/".$nome;
+//if(move_uploaded_file($nometemporario,$destino)){
+//    echo "enviada com sucesso ";
+//}
 $pro->setImagem($_POST['i']);
-
 $re=$pro->salvar($pro);
 
 include_once '../administrador/rodape.php';

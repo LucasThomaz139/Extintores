@@ -14,7 +14,7 @@ $novo=$pro->verificador($pro);
     Descrição<input style="border: 1px solid black; display:block" type="text" name="descrisao" value="<?php echo $novo['descrisao']?>"/>
     Quantidade <input style="border: 1px solid black; display:block" type="number" name="quantidade" value="<?php echo $novo['quantidade']?>"/> 
     Status  <input style="border: 1px solid black; display:block" type="text" name="status" value="<?php echo $novo['status']?>"/>
-    Imagem  <input style="display:block" type="file" name="i" value="<?php echo $novo['imagem']?>"/><br>
+    Imagem  <input style="border: 1px solid black" type="file" name="i" value="<?php echo $novo['imagem']?>"/><br>
      <input style="border: 1px solid black" type="hidden" name="idprodutos" value="<?php echo $novo['idprodutos'];?>"/><br>
     <input style="border: 1px solid black" type="submit"/>
 </form></div>

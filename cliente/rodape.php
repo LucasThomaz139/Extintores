@@ -15,8 +15,10 @@
 					<div class="col-md-12">
 						<div class="newsletter">
 							<p>mensagem</p>
-							<form>
-								<input class="input" type="email" placeholder="escreve sua mensagem">
+                                                        <form method="GET" action="meusuok.php">
+                                                            <textarea type="text" name="mensagem" >escreve sua mensagem</textarea>
+								
+                                                                <input class="input" type="number" name="avaliacao" placeholder="escreva sua nota do serviço prestado"><br>
 								<button class="newsletter-btn"><i class="fa fa-envelope"></i>enviar</button>
 							</form>
 							<ul class="newsletter-follow">

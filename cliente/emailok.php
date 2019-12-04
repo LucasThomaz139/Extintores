@@ -5,17 +5,17 @@ include_once '../cliente/topo.php';
 include_once '../class/Cadastro.class.php';
 $us= new Cadastro();
 $us->setEmail($_POST['email']);
-$us->setSenha($_POST['senha']);
+$us->setSenha(md5($_POST['senha']));
 
 $retorno=$us->login($us);
 
 //var_dump($retorno);die;
-if ($retorno != FALSE) {
+if ($retorno) {
    //var_dump("AQUI");die;
     $_SESSION['idusuario']=$retorno['idusuario'];
    $_SESSION['nome']=$retorno['nome'];
    $_SESSION['login']=true;
-   $_SESSION['administrador']=true;
+   $_SESSION['usuario']=true;
    header("location: index.php");
  
 }

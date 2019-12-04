@@ -11,7 +11,7 @@ $cadastro->setRazaosocial($_GET['razaosocial']);
 $cadastro->setCnpjt($_GET['cnpjt']);
 $cadastro->setEndereco($_GET['endereco']);
 $cadastro->setEmail($_GET['email']);
-$cadastro->setSenha($_GET['senha']);
+$cadastro->setSenha(md5($_GET['senha']));
 $resultado=$cadastro->adicionar($cadastro);
 include_once '../administrador/rodape.php';
 ?>

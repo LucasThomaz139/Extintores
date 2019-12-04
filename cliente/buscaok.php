@@ -1,14 +1,51 @@
 <?php
 ob_start();
-
+session_start();
 include_once '../cliente/topo.php';
 include_once '../class/Cadastro.class.php';
 
 $cadastro=new Cadastro();
-$cadastro->setCnpjt($_GET['cnpjt']);
-$resultado=$cadastro->busca($cadastro);
+$cadastro->setCnpjt($_POST['cnpjt']);
+//var_dump("ccc",$cadastro);
 
-//var_dump($resultado);
+
+if(!isset($_SESSION['idusuario']))
+{
+   
+    $resultado = $cadastro->busca($cadastro);
+?>
+<div  width='-50px' heigth='999px' style='margin-left: 310px;margin-right: 900px; margin-top: 10%;'>
+<table   border="1">
+   <thead> <tr>
+        <th>Código</th>
+        <th>Nome</th>
+       <th>Endereço</th>
+       <th>Email</th>
+        <th>logar</th>
+       
+    </tr>
+    
+    <tbody>
+        <?php
+        foreach ($resultado as $cadastro){
+            
+            //var_dump("aaaaaa", $cadastro);
+            echo"<tr><td>".$cadastro['idusuario']."</td>";
+            echo"<td>".$cadastro['nome']."</td>";
+            echo"<td>".$cadastro['endereco']."</td>";
+            echo"<td>".$cadastro['email']."</td>";
+            echo"<td><a href='email.php?idusuario=".$cadastro['idusuario']."'>logar</a></td>";
+            
+        }
+        ?>
+    </tbody>
+</table>
+</div>
+<?php
+}
+else
+    {
+    $resultado = $cadastro->busca($cadastro);
 ?>
 <div  width='-50px' heigth='999px' style='margin-left: 310px;margin-right: 900px; margin-top: 10%;'>
 <table   border="1">
@@ -21,24 +58,24 @@ $resultado=$cadastro->busca($cadastro);
         <th>cnpjt</th>
         <th>Endereço</th>
         <th>Email</th>
-        <th>Senha</th>
+       
     </tr>
     
     <tbody>
         <?php
-        foreach ($resultado as $linha){
+        foreach ($resultado as $cadastro){
             
-            //var_dump("aaaaaa", $linha);
-            echo"<tr><td>".$linha['idusuario']."</td>";
-            echo"<td>".$linha['nome']."</td>";
-            echo"<td>".$linha['telefonetra']."</td>";
-            echo"<td>".$linha['telefonepe']."</td>";
-            echo"<td>".$linha['razaosocial']."</td>";
-            echo"<td>".$linha['cnpjt']."</td>";
-            echo"<td>".$linha['endereco']."</td>";
-            echo"<td>".$linha['email']."</td>";
-            echo"<td>".$linha['senha']."</td>";
-            echo"<td><a href='ediusu.php?idusuario=".$linha['idusuario']."'>editar</a></td>";
+            //var_dump("aaaaaa", $cadastro);
+            echo"<tr><td>".$cadastro['idusuario']."</td>";
+            echo"<td>".$cadastro['nome']."</td>";
+            echo"<td>".$cadastro['telefonetra']."</td>";
+            echo"<td>".$cadastro['telefonepe']."</td>";
+            echo"<td>".$cadastro['razaosocial']."</td>";
+            echo"<td>".$cadastro['cnpjt']."</td>";
+            echo"<td>".$cadastro['endereco']."</td>";
+            echo"<td>".$cadastro['email']."</td>";
+           
+            echo"<td><a href='ediusu.php?idusuario=".$cadastro['idusuario']."'>editar</a></td>";
             
         }
         ?>
@@ -46,6 +83,7 @@ $resultado=$cadastro->busca($cadastro);
 </table>
 </div>
 <?php
+}
 include_once '../cliente/rodape.php';
 include_once '../cliente/rodape.php';
 

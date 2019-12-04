@@ -207,22 +207,69 @@ class Cadastro {
         }
     }
 
-    function lista($cadastro, $complemento="") {
+    function lista($complemento) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "SELECT*FROM cadastro".$complemento;
+            $sql = "SELECT*FROM cadastro where idusuario='$complemento'";
             $prepara = $conecta->prepare($sql);
-            $prepara->bindValue(":idusuario", $cadastro->getIdusuario());
-            $prepara->bindValue(":nome", $cadastro->getNome());
-            $prepara->bindValue(":telefonetra", $cadastro->getTelefonetra());
-            $prepara->bindValue(":telefonepe", $cadastro->getTelefonepe());
-            $prepara->bindValue(":razaosocial", $cadastro->getRazaosocial());
-            $prepara->bindValue(":cnpjt", $cadastro->getCnpjt());
-            $prepara->bindValue(":endereco", $cadastro->getEndereco());
-            $prepara->bindValue(":email", $cadastro->getEmail());
-            $prepara->bindValue(":senha", $cadastro->getSenha());
+//            $prepara->bindValue(":idusuario", $cadastro->getIdusuario());
+//            $prepara->bindValue(":nome", $cadastro->getNome());
+//            $prepara->bindValue(":telefonetra", $cadastro->getTelefonetra());
+//            $prepara->bindValue(":telefonepe", $cadastro->getTelefonepe());
+//            $prepara->bindValue(":razaosocial", $cadastro->getRazaosocial());
+//            $prepara->bindValue(":cnpjt", $cadastro->getCnpjt());
+//            $prepara->bindValue(":endereco", $cadastro->getEndereco());
+//            $prepara->bindValue(":email", $cadastro->getEmail());
+//            $prepara->bindValue(":senha", $cadastro->getSenha());
+            $prepara->execute();
+            $conecta->commit();
+            $lista = null;
+            while($pegando = $prepara->fetch(PDO::FETCH_ASSOC)){
+                $listando=new Cadastro();
+                $listando->idusuario=$pegando['idusuario'];
+                $listando->nome=$pegando['nome'];
+                $listando->telefonetra=$pegando['telefonetra'];
+                $listando->telefonepe=$pegando['telefonepe'];
+                $listando->razaosocial=$pegando['razaosocial'];
+                $listando->cnpjt=$pegando['cnpjt'];
+                $listando->endereco=$pegando['endereco'];
+                $listando->email=$pegando['email'];
+                $listando->senha=$pegando['senha'];
+                $lista[] = $listando;
+                
+            }
+            return $lista;
+        } catch (PDOException $exc) {
+            if ((isset($conecta)) && ($conecta->inTransaction())) {
+                $conecta->rollBack();
+            }
+            PRINT($exc->getMessage());
+            return FALSE;
+        } finally {
+            if (isset($conecta)) {
+                unset($conecta);
+            }
+        }
+    }
+    
+    function listas() {
+        $conecta;
+        try {
+            $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
+            $conecta->beginTransaction();
+            $sql = "SELECT*FROM cadastro";
+            $prepara = $conecta->prepare($sql);
+//            $prepara->bindValue(":idusuario", $cadastro->getIdusuario());
+//            $prepara->bindValue(":nome", $cadastro->getNome());
+//            $prepara->bindValue(":telefonetra", $cadastro->getTelefonetra());
+//            $prepara->bindValue(":telefonepe", $cadastro->getTelefonepe());
+//            $prepara->bindValue(":razaosocial", $cadastro->getRazaosocial());
+//            $prepara->bindValue(":cnpjt", $cadastro->getCnpjt());
+//            $prepara->bindValue(":endereco", $cadastro->getEndereco());
+//            $prepara->bindValue(":email", $cadastro->getEmail());
+//            $prepara->bindValue(":senha", $cadastro->getSenha());
             $prepara->execute();
             $conecta->commit();
             $lista = null;
@@ -261,14 +308,7 @@ class Cadastro {
             $sql = "SELECT*FROM cadastro WHERE idusuario=:idusuario";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":idusuario", $cadastro->getIdusuario());
-            $prepara->bindValue(":nome", $cadastro->getNome());
-            $prepara->bindValue(":telefonetra", $cadastro->getTelefonetra());
-            $prepara->bindValue(":telefonepe", $cadastro->getTelefonepe());
-            $prepara->bindValue(":razaosocial", $cadastro->getRazaosocial());
-            $prepara->bindValue(":cnpjt", $cadastro->getCnpjt());
-            $prepara->bindValue(":endereco", $cadastro->getEndereco());
-            $prepara->bindValue(":email", $cadastro->getEmail());
-            $prepara->bindValue(":senha", $cadastro->getSenha());
+
             $prepara->execute();
             $conecta->commit();
             $lista = null;
@@ -340,14 +380,15 @@ class Cadastro {
     }
     function busca($cadastro){
          $conecta;
-         //var_dump($cadastro);
+        //var_dump("oooo",$cadastro);
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
             $busca=$cadastro->getCnpjt();
-            $preparedStatment = $conecta->prepare("select * from cadastro where cnpjt like '$busca%'");
-            $preparedStatment->execute();
-            $pega=$preparedStatment->fetchAll(PDO::FETCH_ASSOC);
+            $prepara = $conecta->prepare("select*from cadastro where cnpjt like '$busca%'");
+            $b = $prepara->execute();
+            $pega = $prepara->fetchAll(PDO::FETCH_ASSOC);
+            //var_dump($pega);die;
             return $pega;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
@@ -369,13 +410,12 @@ class Cadastro {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql="SELECT*FROM cadastro WHERE email=:email and senha=:senha";
+            $sql="SELECT*FROM cadastro WHERE email='lucas.thomaz.05.09@gmail.com' and senha=:senha";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":senha", $log->getSenha());
-            $prepara->bindValue(":email", $log->getEmail());
-             $prepara->execute();
+            $prepara->execute();
             $b = $prepara->fetch(PDO::FETCH_ASSOC);
-   
+   //var_dump($b); die;
             return $b;
             
         } catch (PDOException $exc) {

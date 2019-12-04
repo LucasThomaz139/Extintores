@@ -13,7 +13,6 @@ $cadastrando->setRazaosocial($_POST['razaosocial']);
 $cadastrando->setCnpjt($_POST['cnpjt']);
 $cadastrando->setEndereco($_POST['endereco']);
 $cadastrando->setEmail($_POST['email']);
-$cadastrando->setSenha($_POST['senha']);
 $retorno=$cadastrando->salvar($cadastrando);
 
 include_once '../administrador/rodape.php';

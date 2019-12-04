@@ -1,6 +1,6 @@
 <div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
 <?php
- header("location:listar.php");
+ob_start();
 include_once '../administrador/topo.php';
 include_once '../administrador/topo.php';
 include_once '../class/Detalhe.class.php';
@@ -12,6 +12,9 @@ $de->setQuantidade($_GET['quantidade']);
 $de->setDetalhe($_GET['detalhe']);
 $de->setValor($_GET['valor']);
 $den=$de->adicionar($de);
+if($den){
+    header("location:listar.php");
+}
 include_once '../administrador/rodape.php';
 ?>
 </div>
