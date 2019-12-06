@@ -10,7 +10,7 @@ $ros=$agencia->lista();
     <table border="1">
         
            <tr>
-              <th>código</th>
+             
                 <th>nome</th>
                 <th>data</th>
                 <th>descricao</th>
@@ -23,7 +23,6 @@ $ros=$agencia->lista();
             foreach ($ros as $agencia)
             {
             echo"<tr>";
-            echo "<td>".$agencia['idagendamento']."</td>";
             echo "<td>".$agencia['cadastro_idusuario']."</td>";
             echo "<td>".$agencia['data']."</td>";
             echo "<td>".$agencia['descricao']."</td>";

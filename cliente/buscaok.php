@@ -17,7 +17,7 @@ if(!isset($_SESSION['idusuario']))
 <div  width='-50px' heigth='999px' style='margin-left: 310px;margin-right: 900px; margin-top: 10%;'>
 <table   border="1">
    <thead> <tr>
-        <th>Código</th>
+        
         <th>Nome</th>
        <th>Endereço</th>
        <th>Email</th>
@@ -30,7 +30,7 @@ if(!isset($_SESSION['idusuario']))
         foreach ($resultado as $cadastro){
             
             //var_dump("aaaaaa", $cadastro);
-            echo"<tr><td>".$cadastro['idusuario']."</td>";
+            
             echo"<td>".$cadastro['nome']."</td>";
             echo"<td>".$cadastro['endereco']."</td>";
             echo"<td>".$cadastro['email']."</td>";
@@ -50,7 +50,7 @@ else
 <div  width='-50px' heigth='999px' style='margin-left: 310px;margin-right: 900px; margin-top: 10%;'>
 <table   border="1">
    <thead> <tr>
-        <th>Código</th>
+        
         <th>Nome</th>
         <th>Telefone do trabalho</th>
         <th>Telefone Pessoal</th>
@@ -66,7 +66,7 @@ else
         foreach ($resultado as $cadastro){
             
             //var_dump("aaaaaa", $cadastro);
-            echo"<tr><td>".$cadastro['idusuario']."</td>";
+            
             echo"<td>".$cadastro['nome']."</td>";
             echo"<td>".$cadastro['telefonetra']."</td>";
             echo"<td>".$cadastro['telefonepe']."</td>";
