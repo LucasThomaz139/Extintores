@@ -14,6 +14,9 @@ $noss=$emp->lista();
                 echo "<tr><td>".$emp['informacao']."</td>";
                 echo"<td><a href='../empresa/editar.php?id=".$emp['id']."'>editar</a></td>";
             echo"<td><a href='../empresa/excluir.php?id=".$emp['id']."'>excluir</a></td></tr>";
+            echo "<tr><td>".$emp['missao']."</td>";
+            echo "<tr><td>".$emp['visao']."</td>";
+            echo "<tr><td>".$emp['valores']."</td>";
             }
             ?>
                

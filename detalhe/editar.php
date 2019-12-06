@@ -4,6 +4,9 @@ include_once '../class/Detalhe.class.php';
 include_once '../class/Produtos.class.php';
 include_once '../class/Servico.class.php';
 include_once '../class/Agendamento.class.php';
+include_once '../class/Cadastro.class.php';
+$usu= new Cadastro();
+$resul=$usu->listas();
 $de=new Detalhe();
 $de->setIddetalhe($_GET['iddetalhe']);
 $den=$de->verificador($de);
@@ -20,6 +23,15 @@ $bom=$age->lista();
 ?>
 <div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
 <form method="POST" action="editarok.php">
+    cliente<input style="border: 1px solid black; display:block" type="text" disabled value="<?php echo $den['usuario'] ?>"/><select   style="border: 1px solid black; display:block" name="usuario">
+                             <option value="">selecionar</option>
+                                <?php
+                                    foreach($resul as $ac){
+                                    
+                                        echo "<option value='" .$ac->getIdusuario()."'>".$ac->getNome()."</option>";
+                                    }
+                                ?>
+                        </select><br>
     Produto:<input style="border: 1px solid black; display:block" type="text" disabled value="<?php echo $den['produtos_idprodutos'] ?>"/><select  name="produtos_idprodutos">
                         <option value="">selecionar</option>
                 <?php
@@ -50,7 +62,6 @@ $bom=$age->lista();
                             ?>
                         </select><br>
                         detalhe<input style="border: 1px solid black; display:block" type="text" name="detalhe" value="<?php echo $den['detalhe']?>"/>
-                        valor<input style="border: 1px solid black; display:block" type="number" name="valor" value="<?php echo $den['valor']?>"/>
                         <input style="border: 1px solid black" type="hidden" name="iddetalhe" value="<?php echo $den['iddetalhe'];?>"/>
                         <input style="border: 1px solid black" type="submit" value="enviar"></form></div>
 <?php

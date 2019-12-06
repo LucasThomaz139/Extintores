@@ -10,7 +10,6 @@ $de->setUsuario($_GET['usuario']);
 $de->setServico_idservico($_GET['servico_idservico']);
 $de->setAgendamento_idagendamento($_GET['agendamento_idagendamento']);
 $de->setDetalhe($_GET['detalhe']);
-$de->setValor($_GET['valor']);
 $den=$de->adicionar($de);
 if($den){
     header("location:index.php");

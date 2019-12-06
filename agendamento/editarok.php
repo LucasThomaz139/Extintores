@@ -9,7 +9,6 @@ $agencia->setCadastro_idusuario($_POST['cadastro_idusuario']);
 $agencia->setData($_POST['data']);
 $agencia->setDescricao($_POST['descricao']);
 $agencia->setHora($_POST['hora']);
-$agencia->setQuantidade($_POST['quantidade']);
 $eu=$agencia->salvar($agencia);
 
 include_once '../administrador/rodape.php';

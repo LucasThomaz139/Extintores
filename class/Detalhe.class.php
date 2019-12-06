@@ -8,7 +8,6 @@ class Detalhe {
     private $servico_idservico;
     private $agendamento_idagendamento;
     private $detalhe;
-    private $valor;
     function getIddetalhe() {
         return $this->iddetalhe;
     }
@@ -33,9 +32,7 @@ class Detalhe {
         return $this->detalhe;
     }
 
-    function getValor() {
-        return $this->valor;
-    }
+   
     function setIddetalhe($iddetalhe) {
         $this->iddetalhe = $iddetalhe;
     }
@@ -60,22 +57,19 @@ class Detalhe {
         $this->detalhe = $detalhe;
     }
 
-    function setValor($valor) {
-        $this->valor = $valor;
-    }
+    
     function adicionar($detalhe){
         $conectar;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "INSERT INTO detalhe(usuario,servico_idservico,agendamento_idagendamento,produtos_idprodutos,valor,detalhe) VALUES(:usuario,:servico_idservico,:agendamento_idagendamento,:produtos_idprodutos,:valor,:detalhe)";
+            $sql = "INSERT INTO detalhe(usuario,servico_idservico,agendamento_idagendamento,produtos_idprodutos,detalhe) VALUES(:usuario,:servico_idservico,:agendamento_idagendamento,:produtos_idprodutos,:detalhe)";
             //print_r($sql);
             $prepara =$conecta->prepare($sql);
             $prepara->bindValue(":usuario", $detalhe->getUsuario());
             $prepara->bindValue(":servico_idservico", $detalhe->getServico_idservico());
             $prepara->bindValue(":agendamento_idagendamento", $detalhe->getAgendamento_idagendamento());
             $prepara->bindValue(":produtos_idprodutos", $detalhe->getProdutos_idprodutos());
-            $prepara->bindValue(":valor", $detalhe->getValor());
             $prepara->bindValue(":detalhe", $detalhe->getDetalhe());
             $b=$prepara->execute();
             $conecta->commit();    
@@ -97,7 +91,7 @@ class Detalhe {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT detalhe.*,cadastro.nome as usuario, produtos.nome as produtos_idprodutos,servico.nome as servico_idservico FROM detalhe INNER JOIN cadastro ON detalhe.usuario=cadastro.idusuario INNER JOIN produtos ON detalhe.produtos_idprodutos=produtos.idprodutos INNER JOIN servico ON detalhe.servico_idservico=servico.idservico INNER JOIN agendamento ON detalhe.agendamento_idagendamento=agendamento.idagendamento".$complemento;
+            $sql ="SELECT detalhe.*,cadastro.nome as usuario, produtos.nome as produtos_idprodutos,servico.nome as servico_idservico,agendamento.data as agendamento_idagendamento  FROM detalhe INNER JOIN cadastro ON detalhe.usuario=cadastro.idusuario INNER JOIN produtos ON detalhe.produtos_idprodutos=produtos.idprodutos INNER JOIN servico ON detalhe.servico_idservico=servico.idservico INNER JOIN agendamento ON detalhe.agendamento_idagendamento=agendamento.idagendamento".$complemento;
             $prepara = $conecta->prepare($sql);
 //            $prepara->bindValue(":iddetalhe", $detalhe->getIddetalhe());
 //            $prepara->bindValue(":usuario", $detalhe->getUsuario());
@@ -131,7 +125,7 @@ class Detalhe {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "SELECT detalhe.*,cadastro.nome as usuario, produtos.nome as produtos_idprodutos,servico.nome as servico_idservico FROM detalhe  INNER JOIN cadastro ON detalhe.usuario=cadastro.idusuario INNER JOIN produtos ON detalhe.produtos_idprodutos=produtos.idprodutos INNER JOIN servico ON detalhe.servico_idservico=servico.idservico INNER JOIN agendamento ON detalhe.agendamento_idagendamento=agendamento.idagendamento WHERE iddetalhe=:iddetalhe";
+            $sql = "SELECT detalhe.*,cadastro.nome as usuario, produtos.nome as produtos_idprodutos,servico.nome as servico_idservico,agendamento.data as agendamento_idagendamento FROM detalhe  INNER JOIN cadastro ON detalhe.usuario=cadastro.idusuario INNER JOIN produtos ON detalhe.produtos_idprodutos=produtos.idprodutos INNER JOIN servico ON detalhe.servico_idservico=servico.idservico INNER JOIN agendamento ON detalhe.agendamento_idagendamento=agendamento.idagendamento WHERE iddetalhe=:iddetalhe";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":iddetalhe", $detalhe->getIddetalhe());
            $prepara->execute();
@@ -157,16 +151,15 @@ class Detalhe {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE  detalhe SET usuario=:usuario,servico_idservico= :servico_idservico,agendamento_idagendamento= :agendamento_idagendamento, produtos_idprodutos= :produtos_idprodutos,valor= :valor,detalhe=:detalhe WHERE iddetalhe= :iddetalhe";
+            $sql = "UPDATE  detalhe SET usuario=:usuario,servico_idservico= :servico_idservico,agendamento_idagendamento= :agendamento_idagendamento, produtos_idprodutos= :produtos_idprodutos,detalhe=:detalhe WHERE iddetalhe= :iddetalhe";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
            $prepara->bindValue(":iddetalhe",$detalhe->getIddetalhe());
             $prepara->bindValue(":usuario",$detalhe->getUsuario());
-            $prepara->bindValue(":produtos_idprodutos",$detalhe->getProdutos_idprodutos());
             $prepara->bindValue(":servico_idservico",$detalhe->getServico_idservico());
             $prepara->bindValue(":agendamento_idagendamento",$detalhe->getAgendamento_idagendamento());
+            $prepara->bindValue(":produtos_idprodutos",$detalhe->getProdutos_idprodutos());
             $prepara->bindValue(":detalhe",$detalhe->getDetalhe());
-            $prepara->bindValue(":valor",$detalhe->getValor());
             $b=$prepara->execute();
             $conecta->commit();
             

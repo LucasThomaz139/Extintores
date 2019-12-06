@@ -11,7 +11,7 @@ $agencia->setHora($_GET['hora']);
 $retorno=$agencia->adicionar($agencia);
 //var_dump($retorno);
 if($retorno){
-     header("location:lista.php");
+     header("location:index.php");
 }
 include_once '../cliente/rodape.php';
 ?>

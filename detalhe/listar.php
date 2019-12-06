@@ -9,11 +9,12 @@ $den=$de->lista();
 <table border="1">
    <thead> <tr>
         <th>Código</th>
+        <th>Cliente</th>
         <th>Produto</th>
         <th>Serviço</th>
         <th>agendamento</th>
         <th>Detalhe</th>
-        <th>Valor</th>
+        
         
     </tr>
     
@@ -21,11 +22,11 @@ $den=$de->lista();
         <?php
         foreach ($den as $de) {
             echo"<tr><td>".$de['iddetalhe']."</td>";
+            echo"<td>".$de['usuario']."</td>";
             echo"<td>".$de['produtos_idprodutos']."</td>";
             echo"<td>".$de['servico_idservico']."</td>";
             echo"<td>".$de['agendamento_idagendamento']."</td>";
             echo"<td>".$de['detalhe']."</td>";
-            echo"<td>".$de['valor']."</td>";
             echo"<td><a href='../detalhe/editar.php?iddetalhe=".$de['iddetalhe']."'>editar</a></td>";
             echo"<td><a href='../detalhe/excluir.php?iddetalhe=".$de['iddetalhe']."'>excluir</a></td></tr>";
 

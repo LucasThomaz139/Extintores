@@ -3,7 +3,7 @@ include_once '../administrador/topo.php';
 include_once '../class/Agendamento.class.php';
 include_once '../class/Cadastro.class.php';
 $listado=new cadastro();
-$liscadastro=$listado->lista($listado);
+$liscadastro=$listado->listas();
 ?>
 <html>
     <head>
@@ -26,7 +26,7 @@ $liscadastro=$listado->lista($listado);
                         </select><br>
                         <label>Data</label><input style="border: 1px solid black; display:block" type="date" name="data"/><br>
             <label>Hora</label><input style="border: 1px solid black; display:block" type="time" name="hora"/><br>
-            Descrição<input style="border: 1px solid black; display:block" type="text" name="descricao"/><br>
+            Descrição<textarea style="border: 1px solid black; display:block" type="text" name="descricao"></textarea><br>
                         
           <input style="border: 1px solid black;" type="submit" value="enviar">
             

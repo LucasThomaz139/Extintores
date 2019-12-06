@@ -3,6 +3,9 @@
 class Empresa {
     private $id;
     private $informacao;
+    private $missao;
+    private $visao;
+    private $valores;
     function getId() {
         return $this->id;
     }
@@ -10,22 +13,49 @@ class Empresa {
     function getInformacao() {
         return $this->informacao;
     }
-    function setId($id) {
+    function getMissao() {
+        return $this->missao;
+    }
+
+    function getVisao() {
+        return $this->visao;
+    }
+
+    function getValores() {
+        return $this->valores;
+    }
+
+        function setId($id) {
         $this->id = $id;
     }
 
     function setInformacao($informacao) {
         $this->informacao = $informacao;
     }
-    
+    function setMissao($missao) {
+        $this->missao = $missao;
+    }
+
+    function setVisao($visao) {
+        $this->visao = $visao;
+    }
+
+    function setValores($valores) {
+        $this->valores = $valores;
+    }
+
+        
     function adicionar($emp) {
         $conecta;
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "INSERT INTO empresa(informacao) VALUES(:informacao)";
+            $sql = "INSERT INTO empresa(informacao,missao,visao,valores) VALUES(:informacao,:missao,:visao,:valores)";
             $prepara = $conecta->prepare($sql);
             $prepara->bindValue(":informacao", $emp->getInformacao());
+            $prepara->bindValue(":missao", $emp->getMissao());
+            $prepara->bindValue(":visao", $emp->getVisao());
+            $prepara->bindValue(":valores", $emp->getValores());
             
             $prepara->execute();
             $conecta->commit();
@@ -96,11 +126,14 @@ class Empresa {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql = "UPDATE empresa SET  informacao= :informacao WHERE id =:id";
+            $sql = "UPDATE empresa SET  informacao=:informacao,missao=:missao,visao=:visao,valores=:valores WHERE id =:id";
             //print_r($sql);
            $prepara = $conecta->prepare($sql);
            $prepara->bindValue(":id", $salva->getId());
            $prepara->bindValue(":informacao", $salva->getInformacao());
+           $prepara->bindValue(":missao", $salva->getMissao());
+           $prepara->bindValue(":visao", $salva->getVisao());
+           $prepara->bindValue(":valores", $salva->getValores());
            $prepara->execute();
              $conecta->commit();
             

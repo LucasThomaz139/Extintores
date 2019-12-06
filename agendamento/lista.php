@@ -5,19 +5,19 @@ $agencia=new Agendamento();
 $ros=$agencia->lista();
 
 ?>
-<body> <th>código</th>
+<body> 
+    <div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
+    <table border="1">
+        
+           <tr>
+              <th>código</th>
                 <th>nome</th>
                 <th>data</th>
                 <th>descricao</th>
                 <th>hora</th>
-    <div  width='600px' style='margin-left: 30%; margin-top: 10%; display:block'>
-    <table border="1">
-        <thead>
-           <tr>
-              
             </tr>
-        </thead>
-        <tbody>
+      
+        
             <?php
             //var_dump($ros);
             foreach ($ros as $agencia)
@@ -28,14 +28,16 @@ $ros=$agencia->lista();
             echo "<td>".$agencia['data']."</td>";
             echo "<td>".$agencia['descricao']."</td>";
             echo "<td>".$agencia['hora']."</td>";
-            echo"<td><a href='../agendamento/editar.php?idagendamento=" . $agencia ['idagendamento']. "'>editar</a></td>";
-            echo"<td><a href='../agendamento/excluir.php?idagendamento=" . $agencia ['idagendamento']. "'>excluir</a></td></tr>";
+            echo"<td><a href='editar.php?idagendamento=" . $agencia ['idagendamento']. "'>editar</a></td>";
+            echo"<td><a href='excluir.php?idagendamento=" . $agencia ['idagendamento']. "'>excluir</a></td>";
             echo "</tr>";
             
            }
             ?>
-        </tbody>
+        
+        
     </table>
+        
  </div>
 <?php
 include_once '../administrador/rodape.php';

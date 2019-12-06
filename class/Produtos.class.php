@@ -163,7 +163,7 @@ function adicionar($produtos) {
     }
     
      function verificador($produtos){
-        
+                
          $conecta;
         // var_dump($produtos);
         try {
@@ -191,6 +191,8 @@ function adicionar($produtos) {
             }
           function salvar($produtos){
          $conecta;
+          //var_dump($produtos);die;
+
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();

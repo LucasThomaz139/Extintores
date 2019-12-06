@@ -61,7 +61,7 @@ class Agendamento {
             $prepara->bindValue(":hora", $agenda->getHora());
             $s=$prepara->execute();
             $conecta->commit();
-            //var_dump($s);
+            var_dump($s);
             return $s;
            
         } catch (PDOException $exc) {
@@ -82,7 +82,7 @@ class Agendamento {
         try {
             $conecta = new PDO('mysql:host=127.0.0.1;dbname=extintores', 'root', '');
             $conecta->beginTransaction();
-            $sql ="SELECT agendamento.*,cadastro.nome as cadastro_idusuario FROM agendamento INNER JOIN cadastro ON agendamento.cadastro_idusuario=cadastro.idusuario ".$complemento;
+            $sql ="SELECT agendamento.*,cadastro.nome as cadastro_idusuario FROM agendamento INNER JOIN cadastro ON agendamento.cadastro_idusuario=cadastro.idusuario ";
             $prepara = $conecta->prepare($sql);
 
             $b = $prepara->execute();
