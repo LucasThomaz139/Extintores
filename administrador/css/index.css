@@ -1,0 +1,23 @@
+.topo
+{font-size:20px;
+color:white
+	
+}
+.esquerda{
+margin-left:50%;
+margin-top:7%;
+
+float:right;
+margin-right:40%
+}
+.certa{
+	margin-left:20%;
+	
+        width: 100px;
+	 padding: 5px;
+  text-align: left 
+}
+.d{
+	margin-left:30%;
+	margin-right:100%
+}
