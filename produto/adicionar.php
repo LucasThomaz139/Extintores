@@ -7,7 +7,7 @@ include_once '../class/Produtos.class.php';
     nome<input style="border: 1px solid black; display:block" type="text" name="nome">
     Valor<input style="border: 1px solid black; display:block" type="number" name="valor">
     Tipo<input style="border: 1px solid black; display:block" type="text" name="tipo">
-    descrição<input style="border: 1px solid black; display:block" type="text" name="descricao">
+    descrição<textarea style="border: 1px solid black; display:block" type="text" name="descricao"></textarea>
     quantidade<input style="border: 1px solid black; display:block" type="number" name="quantidade">
     status <input style="border: 1px solid black; display:block" type="text" name="status">
     imagem<input style=" display:block" type="file" name="i">
