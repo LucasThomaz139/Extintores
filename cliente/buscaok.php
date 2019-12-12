@@ -58,7 +58,7 @@ else
         <th>cnpjt</th>
         <th>Endereço</th>
         <th>Email</th>
-        <th>senha</th>
+        
         
        
     </tr>
@@ -76,8 +76,6 @@ else
             echo"<td>".$cadastro['cnpjt']."</td>";
             echo"<td>".$cadastro['endereco']."</td>";
             echo"<td>".$cadastro['email']."</td>";
-            echo"<td>".$cadastro['senha']."</td>";
-           
             echo"<td><a href='ediusu.php?idusuario=".$cadastro['idusuario']."'>editar</a></td>";
             
         }
