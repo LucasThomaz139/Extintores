@@ -38,8 +38,9 @@ class Mensagem {
             $prepara->bindValue(":mensagem", $mensagens->getMensagem());
             $prepara->bindValue(":avaliacao", $mensagens->getAvaliacao());
             
-            $prepara->execute();
+            $b=$prepara->execute();
             $conecta->commit();
+            return $b;
         } catch (PDOException $exc) {
             if ((isset($conecta)) && ($conecta->inTransaction())) {
                 $conecta->rollBack();

@@ -7,7 +7,7 @@ $listado=new Cadastro();
 $cliente=$_SESSION['idusuario'];
 //var_dump($cliente);
 $liscadastro=$listado->lista($cliente);
-var_dump($liscadastro);
+//var_dump($liscadastro);
 ?>
 <html>
     <head>

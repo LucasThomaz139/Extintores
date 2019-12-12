@@ -4,9 +4,9 @@ include_once '../class/Cadastro.class.php';
 $listando=new Cadastro();
 $resultado = $listando->listas();
 ?>
-<div  width='-50px' heigth='999px' style='margin-left: 310px;margin-right: 900px; margin-top: 10%;'>
-<table   border="1">
-   <thead> <tr>
+<div  width='600px' style='margin-left: 23%; margin-top: 10%'>
+<table border="1" width="1%" height="200%">
+   <thead align="center"> 
         <th>Código</th>
         <th>Nome</th>
         <th>Telefone do trabalho</th>
@@ -15,9 +15,11 @@ $resultado = $listando->listas();
         <th>cnpjt</th>
         <th>Endereço</th>
         <th>Email</th>
-    </tr>
+        </thead>
     
-    <tbody>
+   
+    
+    <tbody align="center">
         <?php
         foreach ($resultado as $linha){
             echo"<tr><td>".$linha->getIdusuario(':idusuario')."</td>";
